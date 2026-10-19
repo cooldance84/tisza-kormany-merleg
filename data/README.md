@@ -1,14 +1,13 @@
 # Adatfájlok
 
-Az aktuális mérleg:
+A könyvtár a TISZA-kormány mérleg aktuális, géppel is könnyen feldolgozható CSV-változatait tartalmazza.
 
-- [TISZA_kormany_merleg_2026-10-19.xlsx](TISZA_kormany_merleg_2026-10-19.xlsx)
+- **TISZA_merleg.csv** – a teljes mérleg, 49 tétellel
+- **Osszefoglalo.csv** – jelmagyarázat és módszertani összefoglaló
+- **Forrasjegyzek.csv** – kiemelt források
 
-A munkafüzetben a sorok témánként tartalmazzák:
-- az eredeti problémát vagy vállalást;
-- a kormányváltás óta történt lépéseket;
-- az aktuális státuszt;
-- a kapcsolódó programvállalást;
-- az ellenőrzéshez használt forrásokat.
+**Snapshot dátuma:** 2026-10-19
 
-A dátumozott fájlnevek célja, hogy a későbbi frissítések visszakövethetők legyenek.
+A sorokban szereplő státuszok az adott snapshot időpontjának állapotát mutatják. Egy későbbi bejelentés, jogszabály vagy végrehajtási adat a státuszt megváltoztathatja.
+
+A CSV-formátum szándékos: GitHubon jól diffelhető, kereshető és géppel feldolgozható.
