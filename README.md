@@ -26,9 +26,13 @@ A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request ut
 - a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
 - a README-kben szereplő tételszám egyezik a CSV-vel;
 - az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel;
-- a munkafüzetben nincsenek egymást átfedő egyesített cellák (ezt az Excel megnyitáskor „javítja”).
+- a munkafüzetben nincsenek egymást átfedő egyesített cellák (ezt az Excel megnyitáskor „javítja”);
+- minden tételnek van `ÉÉÉÉ-HH-NN` formátumú, nem jövőbeli „Utolsó ellenőrzés” dátuma;
+- a munkafüzet nem visel Microsoft-érzékenységi címkét (MSIP): a címke a címkéző szervezet azonosítóit írja a fájlba, a titkosító címke pedig olvashatatlanná teszi.
 
 Helyben: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`.
+
+Az Excel-munkafüzetet a CSV-kből a [`scripts/sync_xlsx.ps1`](scripts/sync_xlsx.ps1) frissíti – így a munkafüzetet nem kell Excelben szerkeszteni.
 
 ## Státuszok
 

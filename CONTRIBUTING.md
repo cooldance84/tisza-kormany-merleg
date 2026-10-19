@@ -25,7 +25,9 @@ Pártkommunikáció és véleménycikk használható annak dokumentálására, h
 
 ## Adatmódosítás pull requestben
 
-1. Módosítsd a CSV-t **és** az Excel-munkafüzetet is – a kettőnek egyeznie kell.
+1. A CSV-t szerkeszd, majd futtasd: `powershell -File scripts\sync_xlsx.ps1` – ez a CSV-ből frissíti az Excel-munkafüzetet (cellák, új vagy törölt sorok, darabszámok). A munkafüzetet ne Excelben szerkeszd.
 2. Új tétel a `TISZA_merleg.csv` végére kerül, a következő `ID`-val; a státusz csak az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából választható, és ott a darabszámot is frissíteni kell.
 3. A forrás cellában soronként egy link szerepeljen, opcionális címkével (`Program: https://…`).
-4. Futtasd: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`. A GitHub Actions ugyanezt futtatja minden PR-en.
+4. Ha egy tételt a forrásokkal újra összevetettél, frissítsd az `Utolsó ellenőrzés` dátumát – akkor is, ha a státusz nem változott.
+5. Az Excel-munkafüzetre ne tegyél érzékenységi címkét (pl. céges gépen az Office kérésére); a validátor elutasítja.
+6. Futtasd: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`. A GitHub Actions ugyanezt futtatja minden PR-en.
