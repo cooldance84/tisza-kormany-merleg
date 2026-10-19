@@ -7,12 +7,15 @@ Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatal
 > Ez a projekt nem pártkiadvány és nem kampányanyag.  
 > Célja, hogy ugyanazzal a mércével különválassza a programígéretet, a bejelentést, a jogszabályi döntést és a ténylegesen megvalósult eredményt.
 
-## Aktuális adatfájl
+## Aktuális adatok
 
-- [`data/TISZA_kormany_merleg_2026-10-19.xlsx`](data/TISZA_kormany_merleg_2026-10-19.xlsx)
+A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatokat:
 
-A munkafüzet jelenleg **49 témát / vállalást** követ, forráshivatkozásokkal.  
-A fájl külön **„Projekt”** munkalapot is tartalmaz a public repo címével, a licenccel, a módszertani alapelvvel és a hibajavítás módjával.
+- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **49 tételes mérleg**
+- [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok és összefoglaló
+- [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
+
+A CSV-k a 2026.10.19-én frissített Excel-munkafüzet tartalmából készültek. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók.
 
 ## Státuszok
 
@@ -45,7 +48,7 @@ Ugyanígy egy folyamatban lévő nyomozás, vizsgálat vagy jogalkotási folyama
 
 ## Forráskezelés
 
-A táblázat soronként tartalmazza az ellenőrzéshez használt linkeket. Elsődleges forrásként előnyben részesítjük:
+A mérleg soronként tartalmazza az ellenőrzéshez használt linkeket. Elsődleges forrásként előnyben részesítjük:
 
 - Magyar Közlöny / Nemzeti Jogszabálytár
 - KSH
@@ -75,10 +78,12 @@ Ha hibás adatot, elavult státuszt vagy jobb elsődleges forrást találsz, nyi
 
 A cél nem az, hogy valamelyik politikai oldal „nyerjen”, hanem hogy **egy állítás mellé ellenőrizhető forrás kerüljön**.
 
+Részletesebb közreműködési szabályok: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
 ## Verziózás
 
 A fontosabb módosításokat a [`CHANGELOG.md`](CHANGELOG.md) tartalmazza.
 
 ## Licenc
 
-A dokumentáció és az adatfájl a **Creative Commons Attribution 4.0 International (CC BY 4.0)** licenc alatt használható fel. Részletek: [LICENSE](LICENSE).
+A dokumentáció és az adatállományok **Creative Commons Attribution 4.0 International (CC BY 4.0)** licenc alatt használhatók fel. Részletek: [LICENSE](LICENSE).
