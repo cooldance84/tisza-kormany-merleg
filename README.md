@@ -25,7 +25,8 @@ A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request ut
 - minden tételnek van státusza és legalább egy `https://` forrása;
 - a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
 - a README-kben szereplő tételszám egyezik a CSV-vel;
-- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel.
+- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel;
+- a munkafüzetben nincsenek egymást átfedő egyesített cellák (ezt az Excel megnyitáskor „javítja”).
 
 Helyben: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`.
 

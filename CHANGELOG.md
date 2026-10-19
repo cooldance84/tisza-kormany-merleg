@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-19 – Excel-javítás
+
+- Az *Összefoglaló* munkalapon az `A1:B1` egyesítés átfedte az `A1:F1` címsor-egyesítést (már az első feltöltött munkafüzetben is), ezért az Excel megnyitáskor „javította” a fájlt. Az átfedő egyesítés kikerült, a validátor mostantól ellenőrzi az átfedéseket.
+
 ## 2026-10-19 – tételösszevonások és státuszpontosítások
 
 49 → **46 tétel**. A sorszámok átszámozódtak (régi → új): 1–2 → 1–2, 4–24 → 3–23, 27–49 → 24–46.

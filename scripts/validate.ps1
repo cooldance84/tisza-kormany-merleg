@@ -75,7 +75,8 @@ function Read-XlsxSheets([string]$path) {
             }
             $formulas = @{}
             foreach ($c in $doc.SelectNodes('//x:c[x:f]', $dns)) { $formulas[$c.GetAttribute('r')] = $c.SelectSingleNode('x:f', $dns).InnerText }
-            $sheets[$s.GetAttribute('name')] = [pscustomobject]@{ Rows = $rows.ToArray(); Formulas = $formulas }
+            $merges = @($doc.SelectNodes('//x:mergeCells/x:mergeCell', $dns) | ForEach-Object { $_.GetAttribute('ref') })
+            $sheets[$s.GetAttribute('name')] = [pscustomobject]@{ Rows = $rows.ToArray(); Formulas = $formulas; Merges = $merges }
         }
         $sheets
     } finally { $zip.Dispose() }
@@ -151,6 +152,22 @@ else {
     else {
         Compare-Table "$($books[0].Name) [$($names[0])]" $main $sheets[$names[0]].Rows 7
         Compare-Table "$($books[0].Name) [$($names[2])]" $src $sheets[$names[2]].Rows 5
+        # Overlapping merged ranges make Excel "repair" the file on open and drop them.
+        foreach ($name in $names) {
+            $boxes = @($sheets[$name].Merges | ForEach-Object {
+                $m = [regex]::Match($_, '^([A-Z]+)(\d+):([A-Z]+)(\d+)$')
+                $col = { param($l) $v = 0; foreach ($ch in $l.ToCharArray()) { $v = $v * 26 + ([int]$ch - 64) }; $v }
+                , @($_, (& $col $m.Groups[1].Value), [int]$m.Groups[2].Value, (& $col $m.Groups[3].Value), [int]$m.Groups[4].Value)
+            })
+            for ($i = 0; $i -lt $boxes.Count; $i++) {
+                for ($j = $i + 1; $j -lt $boxes.Count; $j++) {
+                    $a = $boxes[$i]; $b = $boxes[$j]
+                    if ($a[1] -le $b[3] -and $b[1] -le $a[3] -and $a[2] -le $b[4] -and $b[2] -le $a[4]) {
+                        Fail "$($books[0].Name) [$name]: merged ranges $($a[0]) and $($b[0]) overlap (Excel repairs the file on open)"
+                    }
+                }
+            }
+        }
         # Summary sheet layout differs from the CSV; check its COUNTIF ranges are not capped at a fixed row.
         foreach ($f in $sheets[$names[1]].Formulas.GetEnumerator()) {
             if ($f.Value -match 'COUNTIF\(.*\$E\$\d+:\$E\$(\d+)' -and [int]$Matches[1] -lt 1000) {
