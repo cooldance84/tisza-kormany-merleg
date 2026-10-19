@@ -22,3 +22,10 @@ Előnyben részesítjük:
 4. több, egymástól független sajtóforrás.
 
 Pártkommunikáció és véleménycikk használható annak dokumentálására, hogy **ki mit állított**, de önmagában nem elegendő vitatott tény bizonyítására.
+
+## Adatmódosítás pull requestben
+
+1. Módosítsd a CSV-t **és** az Excel-munkafüzetet is – a kettőnek egyeznie kell.
+2. Új tétel a `TISZA_merleg.csv` végére kerül, a következő `ID`-val; a státusz csak az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából választható, és ott a darabszámot is frissíteni kell.
+3. A forrás cellában soronként egy link szerepeljen, opcionális címkével (`Program: https://…`).
+4. Futtasd: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`. A GitHub Actions ugyanezt futtatja minden PR-en.

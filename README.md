@@ -12,10 +12,22 @@ Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatal
 A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatokat:
 
 - [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **49 tételes mérleg**
-- [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok és összefoglaló
+- [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok, jelentésük és tételszámuk
 - [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
 
-A CSV-k a 2026.10.19-én frissített Excel-munkafüzet tartalmából készültek. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók.
+A CSV-k a 2026.10.19-én frissített Excel-munkafüzet tartalmából készültek. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md).
+
+### Ellenőrzés
+
+A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request után lefut (GitHub Actions), és ellenőrzi, hogy:
+
+- a sorszámok (`ID`) hézag nélkül 1-től N-ig mennek;
+- minden tételnek van státusza és legalább egy `https://` forrása;
+- a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
+- a README-kben szereplő tételszám egyezik a CSV-vel;
+- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel.
+
+Helyben: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`.
 
 ## Státuszok
 
@@ -87,3 +99,5 @@ A fontosabb módosításokat a [`CHANGELOG.md`](CHANGELOG.md) tartalmazza.
 ## Licenc
 
 A dokumentáció és az adatállományok **Creative Commons Attribution 4.0 International (CC BY 4.0)** licenc alatt használhatók fel. Részletek: [LICENSE](LICENSE).
+
+Javasolt forrásmegjelölés: *TISZA-kormány mérleg – cooldance84 és a közreműködők, https://github.com/cooldance84/tisza-kormany-merleg, CC BY 4.0.*
