@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-19 – tételösszevonások és státuszpontosítások
+
+49 → **46 tétel**. A sorszámok átszámozódtak (régi → új): 1–2 → 1–2, 4–24 → 3–23, 27–49 → 24–46.
+
+Összevonások (egy esemény = egy tétel):
+- régi 2 + 3 → **2. KEKVA-k és kiszervezett állami vagyon** (↗️) – mindkettő ugyanarra a KEKVA-törvényre épült;
+- régi 12 + 26 → **11. Elszámoltatás, korrupciós büntetőügyek** (⚠️) – azonos programidézet és forrás, eddig ⚠️ és ❌ párhuzamosan;
+- régi 21 + 25 → **20. Sajtószabadság, KNBSZ / Szuvák-ügy** (⚠️) – a sajtószabadság-tétel hiányosságát eddig is csak ez az ügy indokolta.
+
+Pontosítások:
+- **15. Egészségügyi bérek** (régi 16): az +500 milliárd Ft kikerült, azt a 39. tétel követi (eddig kétszer szerepelt);
+- **22. Pedagógusbérek** (régi 23): 🔄 → ⏳ – a 2027-es költségvetés a meglévő 80%-os garanciát tartja fenn, új pedagógus-béremelést nem jelentett be (Eduline, Portfolio);
+- **42. Anyák SZJA-mentessége** (régi 45): ⚠️ → 🟦 – a bejelentés még nem elfogadott szabály; elfogadáskor ⚠️ lesz. A README-ben rögzítve: a bejelentés ≠ teljesítés szabály a kedvezőtlen eltérésre is vonatkozik.
+
+Státuszok: ✅ 6, ↗️ 9 (−1), 🔄 7 (−1), 🟦 17 (+1), ⏳ 2 (+1), ⚠️ 3 (−2), ❌ 2 (−1).
+
 ## 2026-10-19 – technikai javítások
 
 Tartalmi (státusz-) változás nincs, a 49 tétel és a darabszámok változatlanok.

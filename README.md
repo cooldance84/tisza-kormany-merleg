@@ -11,7 +11,7 @@ Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatal
 
 A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatokat:
 
-- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **49 tételes mérleg**
+- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **46 tételes mérleg**
 - [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok, jelentésük és tételszámuk
 - [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
 
@@ -55,6 +55,10 @@ A tételeket lehetőség szerint ebben a sorrendben ellenőrizzük:
 
 A **bejelentés nem azonos a teljesítéssel**.  
 Ezért például egy 2027-re bejelentett intézkedés addig nem kap ✅ státuszt, amíg ténylegesen nem lép hatályba / nem valósul meg.
+
+A szabály fordítva is érvényes: a programtól **kedvezőtlen irányban eltérő** bejelentés is 🟦 marad, amíg el nem fogadják; az eltérést a szöveg jelzi, és elfogadáskor kap ⚠️ státuszt.
+
+Egy eseményt csak egy tétel értékel – ha két tétel ugyanarra az ügyre vagy forrásra épülne, összevonjuk őket.
 
 Ugyanígy egy folyamatban lévő nyomozás, vizsgálat vagy jogalkotási folyamat sem tekinthető lezárt eredménynek.
 
