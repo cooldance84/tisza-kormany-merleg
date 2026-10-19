@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-10-19 – elsődleges jogi források, új oszlopok, CSV → Excel szinkron
+
+Elsődleges források (Nemzeti Jogszabálytár / Magyar Közlöny) a jogszabállyal teljesült ✅ tételekhez, státuszváltozás nélkül:
+- **7. Szuverenitásvédelmi Hivatal** – 2026. évi XXIV. törvény (kihirdetve 2026. június 30.);
+- **13. Kórházi klímák** – 1191/2026. (VI. 11.) Korm. határozat (3,67 Mrd Ft), plusz HVG és Economx; a befejezett helyszínek száma miniszteri közlésen alapul;
+- **14. Vényköteles gyógyszerek** – 2026. évi XL. törvény (hatályos 2026. szeptember 1.), NAV-tájékoztató, BAMA; a 0% a humán magisztrális készítményekre is vonatkozik;
+- **26. Tűzifa áfája** – 2026. évi XLVIII. törvény (elfogadva augusztus 28., hatályos szeptember 15.), Portfolio, Világgazdaság; a pelletre és brikettre is kiterjed;
+- **28. Politikusi javadalmazások** – 2026. évi XXV. törvény (hatályos 2026. július 1.); a vármegyei közgyűlési elnökökre is vonatkozik.
+
+Új oszlopok a `TISZA_merleg.csv`-ben és a munkafüzetben:
+- `Vállalt határidő` – csak ahol a programidézet határidőt nevez meg (16: 2030-ra, 38: azonnal, 39: 2030-ig, évente);
+- `Utolsó ellenőrzés` – minden tételnél 2026-10-19 (a snapshot dátuma).
+
+Eszközök:
+- `scripts/sync_xlsx.ps1`: a CSV-kből frissíti a munkafüzetet, így azt nem kell Excelben szerkeszteni;
+- a validátor ellenőrzi az `Utolsó ellenőrzés` dátumformátumát, és elutasítja az érzékenységi címkével (MSIP) ellátott vagy titkosított munkafüzetet;
+- `.gitignore`: az Excel zárolófájljai (`~$*`).
+
 ## 2026-10-19 – Excel-javítás
 
 - Az *Összefoglaló* munkalapon az `A1:B1` egyesítés átfedte az `A1:F1` címsor-egyesítést (már az első feltöltött munkafüzetben is), ezért az Excel megnyitáskor „javította” a fájlt. Az átfedő egyesítés kikerült, a validátor mostantól ellenőrzi az átfedéseket.

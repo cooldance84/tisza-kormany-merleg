@@ -96,7 +96,7 @@ function Compare-Table($label, $csv, $sheetRows, [int]$columns) {
 }
 
 # --- main table ---------------------------------------------------------------
-$main = Read-CsvFile 'TISZA_merleg.csv' 7
+$main = Read-CsvFile 'TISZA_merleg.csv' 9
 if ($main.Header[0] -ne 'ID') { Fail "TISZA_merleg.csv: first column must be 'ID' (a '#' header is dropped as a comment by PowerShell Import-Csv)" }
 $urlLine = '^([^:]+: )?https://\S+$'
 for ($i = 0; $i -lt $main.Rows.Count; $i++) {
@@ -106,6 +106,10 @@ for ($i = 0; $i -lt $main.Rows.Count; $i++) {
     $lines = @($r[6] -split "`n" | Where-Object { $_.Trim() -ne '' })
     if ($lines.Count -eq 0) { Fail "TISZA_merleg.csv: ID $id has no source" }
     foreach ($l in $lines) { if ($l -notmatch $urlLine) { Fail "TISZA_merleg.csv: ID $id source line is not '[Label: ]https://...': $l" } }
+    $checked = [datetime]::MinValue
+    if (-not [datetime]::TryParseExact($r[8], 'yyyy-MM-dd', [Globalization.CultureInfo]::InvariantCulture, 'None', [ref]$checked)) {
+        Fail "TISZA_merleg.csv: ID $id last-checked date '$($r[8])' is not YYYY-MM-DD"
+    } elseif ($checked -gt [datetime]::Today.AddDays(1)) { Fail "TISZA_merleg.csv: ID $id last-checked date $($r[8]) is in the future" }
 }
 $itemCount = $main.Rows.Count
 
@@ -146,11 +150,26 @@ foreach ($doc in 'README.md', 'data/README.md') {
 $books = @(Get-ChildItem $data -Filter '*.xlsx')
 if ($books.Count -ne 1) { Fail "data/: expected exactly one .xlsx, found $($books.Count)" }
 else {
-    $sheets = Read-XlsxSheets $books[0].FullName
+    # A Microsoft sensitivity label (MSIP) carries the labelling organisation's tenant and label ids;
+    # an encrypting label turns the file into a non-zip container. Neither belongs in this public repo.
+    try { $zip = [IO.Compression.ZipFile]::OpenRead($books[0].FullName) }
+    catch { Fail "$($books[0].Name): not a readable xlsx (zip) file - encrypted by a sensitivity label?"; $zip = $null }
+    if ($zip) {
+        try {
+            foreach ($e in $zip.Entries) {
+                if ($e.FullName -like 'docMetadata/*') { Fail "$($books[0].Name): contains $($e.FullName) (sensitivity label metadata); remove the label" ; continue }
+                $sr = New-Object IO.StreamReader($e.Open(), $utf8)
+                try { if ($sr.ReadToEnd() -match 'MSIP_Label_') { Fail "$($books[0].Name): $($e.FullName) contains MSIP_Label_ properties (sensitivity label); remove the label" } }
+                finally { $sr.Dispose() }
+            }
+        } finally { $zip.Dispose() }
+    }
+    $sheets = if ($zip) { Read-XlsxSheets $books[0].FullName } else { [ordered]@{} }
     $names = @($sheets.Keys)
-    if ($names.Count -lt 3) { Fail "$($books[0].Name): expected at least 3 sheets, found $($names.Count)" }
+    if (-not $zip) { }
+    elseif ($names.Count -lt 3) { Fail "$($books[0].Name): expected at least 3 sheets, found $($names.Count)" }
     else {
-        Compare-Table "$($books[0].Name) [$($names[0])]" $main $sheets[$names[0]].Rows 7
+        Compare-Table "$($books[0].Name) [$($names[0])]" $main $sheets[$names[0]].Rows 9
         Compare-Table "$($books[0].Name) [$($names[2])]" $src $sheets[$names[2]].Rows 5
         # Overlapping merged ranges make Excel "repair" the file on open and drop them.
         foreach ($name in $names) {
