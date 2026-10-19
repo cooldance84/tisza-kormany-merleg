@@ -11,7 +11,8 @@ Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatal
 
 - [`data/TISZA_kormany_merleg_2026-10-19.xlsx`](data/TISZA_kormany_merleg_2026-10-19.xlsx)
 
-A munkafüzet jelenleg **49 témát / vállalást** követ, forráshivatkozásokkal.
+A munkafüzet jelenleg **49 témát / vállalást** követ, forráshivatkozásokkal.  
+A fájl külön **„Projekt”** munkalapot is tartalmaz a public repo címével, a licenccel, a módszertani alapelvvel és a hibajavítás módjával.
 
 ## Státuszok
 
