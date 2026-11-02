@@ -2,12 +2,12 @@
 
 A könyvtár a TISZA-kormány mérleg aktuális, géppel is könnyen feldolgozható CSV-változatait tartalmazza.
 
-- **TISZA_merleg.csv** – a teljes mérleg, 46 tétellel
+- **TISZA_merleg.csv** – a teljes mérleg, 47 tétellel
 - **Osszefoglalo.csv** – státuszok, jelentésük és tételszámuk
 - **Forrasjegyzek.csv** – kiemelt források
 - **TISZA_kormany_merleg_2026-10-19.xlsx** – ugyanez Excel-munkafüzetként (plusz *Projekt* munkalap)
 
-**Snapshot dátuma:** 2026-10-19
+**Snapshot dátuma:** 2026-10-19, részfrissítés 2026-11-02 (a tételenkénti dátum az `Utolsó ellenőrzés` oszlopban)
 
 A sorokban szereplő státuszok az adott snapshot időpontjának állapotát mutatják. Egy későbbi bejelentés, jogszabály vagy végrehajtási adat a státuszt megváltoztathatja.
 

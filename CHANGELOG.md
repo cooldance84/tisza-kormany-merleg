@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-11-02 – benyújtott 2027-es törvényjavaslatok, új tétel: ügynökakták
+
+46 → **47 tétel**. A meglévő tételek státusza nem változott: a törvényjavaslatokat benyújtották, de még nem fogadták el, ezért a 🟦 tételek 🟦-k maradnak.
+
+- 2027-es költségvetés: T/950., benyújtva 2026. október 30-án; az adócsomag (T/927–T/931) és a nyugdíjtörvény-javaslat (T/932) 2026. október 27-én;
+- **30. Családi pótlék** – T/929: az emelt összegű pótlék is duplázódik (pl. 23 300 → 46 600 Ft), már a januárban folyósított decemberi pótléktól;
+- **31. SZJA / alacsony keresetűek** – a 9% új, 6%-os bérjóváírással jönne ki, az általános kulcs 15% marad;
+- **32. Minimálnyugdíj** – T/932: a 120 000 Ft-os minimum csak a 2027-től megállapított nyugdíjakra; a folyósított nyugdíjak emeléséhez kormányrendelet kell, még nem jelent meg;
+- **35, 36, 46** – benyújtva a T/932.-ben;
+- **39. Egészségügyi többletforrás** – 500 → **510 milliárd Ft** a T/950.-ben;
+- **40. Vagyonadó** – T/930: menetrend, 200 milliárd Ft várt bevétel, amelyet a Költségvetési Tanács bizonytalannak tart;
+- **41. KATA** – T/928: nem főfoglalkozásban 50 ezer Ft/hó; a 75 ezer Ft a régi katában maradóké (2027), a régi rendszer 2029 elején megszűnik;
+- **42. Anyák SZJA-mentessége** – T/929: a kétgyermekes anyák mentessége a 40. életév évéig jár (a már jogosultak egy része is elveszíti), a három- és többgyermekeseké élethosszig, havonta legfeljebb 1 millió Ft munkajövedelemig; továbbra is 🟦, elfogadáskor ⚠️;
+- **új: 47. Ügynökakták** (↗️) – programvállalás („Megnyitjuk az ügynökaktákat.”), 2026. évi LI. törvény, a 2026. évi LX. törvény szerint november 4-én indul a nyilvánosságra hozatal (nyitottaktak.hu), a B-dossziék 2027. február 25-ig. A tábla csak az intézkedést követi, az iratokban szereplő személyeket nem.
+
 ## 2026-10-19 – elsődleges jogi források, új oszlopok, CSV → Excel szinkron
 
 Elsődleges források (Nemzeti Jogszabálytár / Magyar Közlöny) a jogszabállyal teljesült ✅ tételekhez, státuszváltozás nélkül:
