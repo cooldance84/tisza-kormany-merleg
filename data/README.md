@@ -39,4 +39,11 @@ Egy cellában több forrás is lehet, ilyenkor soronként egy szerepel (idézőj
 
 ## Excel-munkafüzet
 
-A *TISZA mérleg* és a *Forrásjegyzék* munkalapnak cellára egyeznie kell a megfelelő CSV-vel; az *Összefoglaló* munkalap a darabszámokat `COUNTIF` képlettel, a teljes *Státusz* oszlopra számolja. A munkafüzetet a [`scripts/sync_xlsx.ps1`](../scripts/sync_xlsx.ps1) állítja elő a CSV-kből (a formázás megmarad); kézi Excel-szerkesztés helyett ezt futtasd, az eltérést a validátor jelzi. A szkript az *Összefoglaló* címében és a *Projekt* munkalap „Utolsó frissítés” sorában a legkésőbbi `Utolsó ellenőrzés` dátumát írja be. A fájlnév szándékosan dátum nélküli (2026. november 24-ig `TISZA_kormany_merleg_2026-10-19.xlsx` volt), így a rá mutató hivatkozások frissítéskor sem változnak; a frissítés dátuma a munkalapokon látható.
+A *TISZA mérleg* és a *Forrásjegyzék* munkalapnak cellára egyeznie kell a megfelelő CSV-vel; az *Összefoglaló* munkalap a darabszámokat `COUNTIF` képlettel, a teljes *Státusz* oszlopra számolja. A munkafüzetet a [`scripts/sync_xlsx.ps1`](../scripts/sync_xlsx.ps1) állítja elő a CSV-kből (a formázás megmarad); kézi Excel-szerkesztés helyett ezt futtasd, az eltérést a validátor jelzi. A szkript az *Összefoglaló* címében és a *Projekt* munkalap „Utolsó frissítés” sorában a legkésőbbi `Utolsó ellenőrzés` dátumát írja be, a *Projekt* lap „Tételek száma” sorába pedig a tételszámot.
+
+Formázás, amelyet a szkript minden futáskor beállít:
+
+- **Színezés státusz szerint:** a *TISZA mérleg* minden sora a státuszának színét kapja. A színeket az *Összefoglaló* darabszám-táblázata adja (✅ zöld, ↗️ és 🔄 világoskék, 🟦 kék, ⏳ szürke, ⚠️ sárga, ❌ piros); ugyanezt kapja a jelmagyarázat is. Más szín beállításához elég az *Összefoglaló* táblázatában átszínezni a státusz celláját, majd újra futtatni a szkriptet.
+- **Rögzített sor és oszlopok:** a fejléc és az A–B oszlop (ID, Terület) jobbra és lefelé görgetéskor is látható marad.
+
+A fájlnév szándékosan dátum nélküli (2026. november 24-ig `TISZA_kormany_merleg_2026-10-19.xlsx` volt), így a rá mutató hivatkozások frissítéskor sem változnak; a frissítés dátuma a munkalapokon látható.
