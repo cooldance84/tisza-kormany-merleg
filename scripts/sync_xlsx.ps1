@@ -106,6 +106,120 @@ try {
     Sync-Sheet $parts[0] $main
     Sync-Sheet $parts[2] $src
 
+    function U([string]$s) { [regex]::Unescape($s) }
+
+    # --- main sheet: status colours taken from the summary sheet, A:B frozen -------------
+    # Each status label in column A of the summary sheet carries the fill to use; every row of
+    # the main sheet gets that fill (base cell styles: A2 for the row, E2 for the status column).
+    $sty = Get-Xml 'xl/styles.xml'
+    $sns = New-Object Xml.XmlNamespaceManager $sty.NameTable; $sns.AddNamespace('x', $nsUri)
+    $cellXfs = $sty.SelectSingleNode('//x:cellXfs', $sns)
+    function Get-XfWithFill([int]$base, [string]$fillId) {
+        $xfs = @($cellXfs.SelectNodes('x:xf', $sns))
+        $want = $xfs[$base].CloneNode($true); $want.SetAttribute('fillId', $fillId); $want.SetAttribute('applyFill', '1')
+        for ($k = 0; $k -lt $xfs.Count; $k++) { if ($xfs[$k].OuterXml -eq $want.OuterXml) { return $k } }
+        [void]$cellXfs.AppendChild($want); $cellXfs.SetAttribute('count', [string]($xfs.Count + 1))
+        return $xfs.Count
+    }
+    function Get-FillOf([int]$xf) { @($cellXfs.SelectNodes('x:xf', $sns))[$xf].GetAttribute('fillId') }
+
+    $sumDoc = Get-Xml $parts[1]
+    $sumNs = New-Object Xml.XmlNamespaceManager $sumDoc.NameTable; $sumNs.AddNamespace('x', $nsUri)
+    $statusCol = [array]::IndexOf($main[0], ($main[0] | Where-Object { $_ -like 'St*tusz' } | Select-Object -First 1))
+    # statuses: those used in the main table plus those listed in the summary's COUNTIF table
+    # (a status with 0 items still needs its legend colour)
+    $countLabels = @($sumDoc.SelectNodes('//x:c[x:f]', $sumNs) | Where-Object { $_.SelectSingleNode('x:f', $sumNs).InnerText -match '^COUNTIF\(' } |
+        ForEach-Object { $rn = $_.GetAttribute('r') -replace '[A-Z]', ''; $sumDoc.SelectSingleNode("//x:c[@r='A$rn']/x:v", $sumNs).InnerText })
+    $labels = @(@($main | Select-Object -Skip 1 | ForEach-Object { $_[$statusCol] }) + $countLabels | Sort-Object -Unique)
+    $statusFill = @{}
+    foreach ($c in @($sumDoc.SelectNodes('//x:sheetData/x:row/x:c', $sumNs))) {
+        if ($c.GetAttribute('r') -notmatch '^A\d+$') { continue }
+        $v = $c.SelectSingleNode('x:v', $sumNs); if (-not $v) { continue }
+        if ($labels -contains $v.InnerText -and $c.GetAttribute('s') -ne '') { $statusFill[$v.InnerText] = Get-FillOf ([int]$c.GetAttribute('s')) }
+    }
+    foreach ($l in $labels) { if (-not $statusFill.ContainsKey($l)) { throw "summary sheet has no coloured cell for status '$l'" } }
+
+    $doc = Get-Xml $parts[0]
+    $ns = New-Object Xml.XmlNamespaceManager $doc.NameTable; $ns.AddNamespace('x', $nsUri)
+    $statusLetter = Col-Letter $statusCol
+    $baseRow = [int]$doc.SelectSingleNode("//x:c[@r='A2']", $ns).GetAttribute('s')
+    $baseStatus = [int]$doc.SelectSingleNode("//x:c[@r='${statusLetter}2']", $ns).GetAttribute('s')
+    $rowsXml = @($doc.SelectNodes('//x:sheetData/x:row', $ns))
+    for ($i = 1; $i -lt $rowsXml.Count; $i++) {
+        $fid = $statusFill[$main[$i][$statusCol]]
+        $rowXf = Get-XfWithFill $baseRow $fid; $statXf = Get-XfWithFill $baseStatus $fid
+        foreach ($c in @($rowsXml[$i].SelectNodes('x:c', $ns))) {
+            $c.SetAttribute('s', [string]$(if (($c.GetAttribute('r') -replace '\d', '') -eq $statusLetter) { $statXf } else { $rowXf }))
+        }
+    }
+    # freeze the header row and columns A:B
+    $view = $doc.SelectSingleNode('//x:sheetViews/x:sheetView', $ns)
+    foreach ($n in @($view.ChildNodes)) { [void]$view.RemoveChild($n) }
+    $pane = $doc.CreateElement('x', 'pane', $nsUri)
+    foreach ($a in @(@('xSplit', '2'), @('ySplit', '1'), @('topLeftCell', 'C2'), @('activePane', 'bottomRight'), @('state', 'frozen'))) { $pane.SetAttribute($a[0], $a[1]) }
+    [void]$view.AppendChild($pane)
+    $sel = $doc.CreateElement('x', 'selection', $nsUri)
+    foreach ($a in @(@('pane', 'bottomRight'), @('activeCell', 'C2'), @('sqref', 'C2'))) { $sel.SetAttribute($a[0], $a[1]) }
+    [void]$view.AppendChild($sel)
+    Save-Xml $parts[0] $doc
+
+    # legend on the summary sheet: "<status> - <meaning>" lines get the colour of their status
+    foreach ($c in @($sumDoc.SelectNodes('//x:sheetData/x:row/x:c', $sumNs))) {
+        if ($c.GetAttribute('r') -notmatch '^A\d+$') { continue }
+        $v = $c.SelectSingleNode('x:v', $sumNs); if (-not $v) { continue }
+        foreach ($l in $labels) {
+            if ($v.InnerText.StartsWith($l + ' ' + [char]0x2013)) { $c.SetAttribute('s', [string](Get-XfWithFill $baseRow $statusFill[$l])) }
+        }
+    }
+    Save-Xml $parts[1] $sumDoc
+    Save-Xml 'xl/styles.xml' $sty
+
+    # --- project sheet: rows for item count, deadlines and data flow ----------------------
+    if ($parts.Count -ge 4) {
+        $doc = Get-Xml $parts[3]
+        $ns = New-Object Xml.XmlNamespaceManager $doc.NameTable; $ns.AddNamespace('x', $nsUri)
+        $sd = $doc.SelectSingleNode('//x:sheetData', $ns)
+        $text = { param($row, $col) $n = $row.SelectSingleNode("x:c[starts-with(@r,'$col')]/x:v", $ns); if ($n) { $n.InnerText } else { '' } }
+        $rowsXml = @($sd.SelectNodes('x:row', $ns))
+        $note = $rowsXml | Where-Object { (& $text $_ 'A').StartsWith((U 'Megjegyz\u00e9s')) } | Select-Object -First 1
+        $dataRows = @($rowsXml | Where-Object { [int]$_.GetAttribute('r') -ge 4 -and $_ -ne $note -and (& $text $_ 'A') -ne '' })
+        $template = $dataRows | Where-Object { $_.SelectSingleNode("x:c[starts-with(@r,'D')]", $ns) } | Select-Object -First 1
+        $wanted = @(
+            @((U 'T\u00e9telek sz\u00e1ma'), [string]($main.Count - 1), (U 'A st\u00e1tuszok szerinti bont\u00e1s az \u00d6sszefoglal\u00f3 munkalapon.'), ''),
+            @((U 'Hat\u00e1rid\u0151k'), (U 'V\u00e1llalt hat\u00e1rid\u0151 oszlop'), (U 'Csak a programban szerepl\u0151 hat\u00e1rid\u0151: els\u0151 int\u00e9zked\u00e9sek, azonnal, konkr\u00e9t \u00e9v vagy nincs megadva. \u274c csak a hat\u00e1rid\u0151 ut\u00e1n adhat\u00f3.'), 'https://github.com/cooldance84/tisza-kormany-merleg#hat%C3%A1rid%C5%91k-%C3%A9s-a-t%C3%A9telek-%C3%A9letciklusa'),
+            @((U 'Adatok'), (U 'CSV \u2192 Excel'), (U 'A munkaf\u00fczet a data/*.csv f\u00e1jlokb\u00f3l k\u00e9sz\u00fcl (scripts/sync_xlsx.ps1); szerkeszteni a CSV-ben kell.'), 'https://github.com/cooldance84/tisza-kormany-merleg/tree/main/data')
+        )
+        foreach ($w in $wanted) {
+            $row = $dataRows | Where-Object { (& $text $_ 'A') -eq $w[0] } | Select-Object -First 1
+            if (-not $row) { $row = $template.CloneNode($true); [void]$sd.InsertBefore($row, $note); $dataRows += $row }
+            foreach ($j in 0..3) {
+                $L = Col-Letter $j
+                $c = $row.SelectSingleNode("x:c[starts-with(@r,'$L')]", $ns); if (-not $c) { continue }
+                foreach ($child in @($c.ChildNodes)) { [void]$c.RemoveChild($child) }
+                if ($w[$j] -eq '') { $c.SetAttribute('t', 'n'); continue }
+                $c.SetAttribute('t', 'str'); $v = $doc.CreateElement('x', 'v', $nsUri); $v.InnerText = $w[$j]; [void]$c.AppendChild($v)
+            }
+        }
+        # renumber: data rows from 4, one blank row, then the note; keep the note's merge in step
+        $oldNote = $note.GetAttribute('r'); $n = 4
+        foreach ($row in @($sd.SelectNodes('x:row', $ns))) {
+            $r = [int]$row.GetAttribute('r')
+            if ($row -eq $note -or $r -lt 4) { continue }
+            $row.SetAttribute('r', [string]$n)
+            foreach ($c in @($row.SelectNodes('x:c', $ns))) { $c.SetAttribute('r', ($c.GetAttribute('r') -replace '\d+$', '') + $n) }
+            $n++
+        }
+        $newNote = $n + 1
+        $note.SetAttribute('r', [string]$newNote)
+        foreach ($c in @($note.SelectNodes('x:c', $ns))) { $c.SetAttribute('r', ($c.GetAttribute('r') -replace '\d+$', '') + $newNote) }
+        [void]$sd.RemoveChild($note); [void]$sd.AppendChild($note)
+        foreach ($mc in @($doc.SelectNodes('//x:mergeCell', $ns))) {
+            if ($mc.GetAttribute('ref') -eq "A${oldNote}:D${oldNote}") { $mc.SetAttribute('ref', "A${newNote}:D${newNote}") }
+        }
+        $dim = $doc.SelectSingleNode('//x:dimension', $ns); if ($dim) { $dim.SetAttribute('ref', "A1:D$newNote") }
+        Save-Xml $parts[3] $doc
+    }
+
     # summary sheet: cached COUNTIF values (Excel recalculates on open, other readers use the cache)
     $doc = Get-Xml $parts[1]
     $ns = New-Object Xml.XmlNamespaceManager $doc.NameTable; $ns.AddNamespace('x', $nsUri)

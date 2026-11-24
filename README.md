@@ -25,7 +25,7 @@ A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request ut
 - minden tételnek van státusza, kitöltött `Vállalt határidő` mezője és legalább egy `https://` forrása;
 - a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
 - a README-kben szereplő tételszám, a lenti státusztábla darabszámai és az „Utolsó frissítés” dátuma (= a legkésőbbi „Utolsó ellenőrzés”) egyezik a CSV-vel;
-- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel, a munkalapokon feltüntetett frissítési dátum pedig a legkésőbbi „Utolsó ellenőrzés”;
+- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel, a munkalapokon feltüntetett frissítési dátum pedig a legkésőbbi „Utolsó ellenőrzés”; a sorok színe a státusznak megfelelő, a fejléc és az A–B oszlop rögzített;
 - a munkafüzetben nincsenek egymást átfedő egyesített cellák (ezt az Excel megnyitáskor „javítja”);
 - minden tételnek van `ÉÉÉÉ-HH-NN` formátumú, nem jövőbeli „Utolsó ellenőrzés” dátuma;
 - a munkafüzet nem visel Microsoft-érzékenységi címkét (MSIP): a címke a címkéző szervezet azonosítóit írja a fájlba, a titkosító címke pedig olvashatatlanná teszi.

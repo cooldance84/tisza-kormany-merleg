@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-24 – Excel: színezés, rögzített oszlopok, Forrásjegyzék és Projekt lap
+
+Tartalmi (státusz-) változás nincs.
+
+- **Színezés státusz szerint:** a *TISZA mérleg* soraiban a 39–56. tételek színezetlenek voltak, a 24. és 25. tétel pedig még a régi ❌-es pirosat viselte. Mostantól minden sor a státusza színét kapja az *Összefoglaló* darabszám-táblázata alapján; a jelmagyarázat elcsúszott színei (🟦 sárga, ⏳ piros, ⚠️ és ❌ színtelen) is javultak. A színezést a `scripts/sync_xlsx.ps1` minden futáskor beállítja, így státuszváltáskor automatikusan követi.
+- **Rögzítés:** a *TISZA mérleg* lapon a fejléc mellett az A–B oszlop (ID, Terület) is rögzített, jobbra görgetéskor látható marad.
+- **Forrásjegyzék:** a nyolc alapforrás (program PDF, kormany.hu, NJT / Magyar Közlöny / parlament.hu, NNGYK, KSH, 24.hu, Telex, HVG / 444 / Portfolio) linket kapott; eddig üres volt.
+- **Projekt lap:** új sorok – *Tételek száma* (a szkript frissíti), *Határidők* (a szabály rövid leírása, link a README szakaszára), *Adatok* (CSV → Excel).
+- **Összefoglaló:** a „2026.10.19-i frissítés…” elavult megjegyzés helyett hivatkozás a CHANGELOG-ra és a dátumoszlopokra.
+- `scripts/validate.ps1`: ellenőrzi a sorok színét, a rögzítést és a *Projekt* lap tételszámát.
+
 ## 2026-11-24 – határidők minden tételnél, életciklus-szabály
 
 Státuszváltozás nincs.

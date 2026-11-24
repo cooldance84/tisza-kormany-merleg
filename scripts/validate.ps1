@@ -220,7 +220,46 @@ else {
         if ($names.Count -ge 4) {
             $row = @($sheets[$names[3]].Rows | Where-Object { $_[0] -eq [regex]::Unescape('Utols\u00f3 friss\u00edt\u00e9s') })
             if ($row.Count -and $row[0][1] -ne $stamp) { Fail "$($books[0].Name) [$($names[3])]: last-updated is '$($row[0][1])', expected $stamp; run sync_xlsx.ps1" }
+            $cnt = @($sheets[$names[3]].Rows | Where-Object { $_[0] -like 'T*telek sz*ma' })
+            if ($cnt.Count -and $cnt[0][1] -ne [string]$itemCount) { Fail "$($books[0].Name) [$($names[3])]: item count is '$($cnt[0][1])', CSV has $itemCount; run sync_xlsx.ps1" }
         }
+        # Row colours: every main-sheet row carries the fill of its status label in the summary
+        # sheet's COUNTIF table; the header row and columns A:B are frozen.
+        $zip = [IO.Compression.ZipFile]::OpenRead($books[0].FullName)
+        try {
+            $nsu = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'
+            $readXml = { param($n) $e = $zip.GetEntry($n); $sr = New-Object IO.StreamReader($e.Open(), $utf8); try { [xml]$sr.ReadToEnd() } finally { $sr.Dispose() } }
+            $wbx = & $readXml 'xl/workbook.xml'; $relx = & $readXml 'xl/_rels/workbook.xml.rels'
+            $wm = New-Object Xml.XmlNamespaceManager $wbx.NameTable; $wm.AddNamespace('x', $nsu)
+            $partOf = @{}
+            foreach ($sh in $wbx.SelectNodes('//x:sheets/x:sheet', $wm)) {
+                $rid = $sh.GetAttribute('id', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships')
+                $t = ($relx.Relationships.Relationship | Where-Object { $_.Id -eq $rid }).Target.TrimStart('/'); if ($t -notlike 'xl/*') { $t = 'xl/' + $t }
+                $partOf[$sh.GetAttribute('name')] = $t
+            }
+            $sty = & $readXml 'xl/styles.xml'; $sm = New-Object Xml.XmlNamespaceManager $sty.NameTable; $sm.AddNamespace('x', $nsu)
+            $xfFill = @($sty.SelectNodes('//x:cellXfs/x:xf', $sm) | ForEach-Object { $_.GetAttribute('fillId') })
+            $fillOfCell = { param($c) $si = $c.GetAttribute('s'); if ($si -eq '') { '0' } else { $xfFill[[int]$si] } }
+            $sum = & $readXml $partOf[$names[1]]; $um = New-Object Xml.XmlNamespaceManager $sum.NameTable; $um.AddNamespace('x', $nsu)
+            $want = @{}
+            foreach ($fc in $sum.SelectNodes('//x:c[x:f]', $um)) {
+                if ($fc.SelectSingleNode('x:f', $um).InnerText -notmatch '^COUNTIF\(') { continue }
+                $rn = $fc.GetAttribute('r') -replace '[A-Z]', ''; $a = $sum.SelectSingleNode("//x:c[@r='A$rn']", $um)
+                $want[$a.SelectSingleNode('x:v', $um).InnerText] = & $fillOfCell $a
+            }
+            $ms = & $readXml $partOf[$names[0]]; $mm = New-Object Xml.XmlNamespaceManager $ms.NameTable; $mm.AddNamespace('x', $nsu)
+            foreach ($row in @($ms.SelectNodes('//x:sheetData/x:row', $mm) | Select-Object -Skip 1)) {
+                $rn = $row.GetAttribute('r'); $e = $row.SelectSingleNode("x:c[@r='E$rn']/x:v", $mm)
+                if (-not $e -or -not $want.ContainsKey($e.InnerText)) { continue }   # unknown statuses are reported above
+                foreach ($c in $row.SelectNodes('x:c', $mm)) {
+                    if ((& $fillOfCell $c) -ne $want[$e.InnerText]) { Fail "$($books[0].Name) [$($names[0])]!$($c.GetAttribute('r')): fill does not match the colour of '$($e.InnerText)' on the summary sheet; run sync_xlsx.ps1"; break }
+                }
+            }
+            $pane = $ms.SelectSingleNode('//x:sheetView/x:pane', $mm)
+            if (-not $pane -or $pane.GetAttribute('xSplit') -ne '2' -or $pane.GetAttribute('ySplit') -ne '1' -or $pane.GetAttribute('state') -ne 'frozen') {
+                Fail "$($books[0].Name) [$($names[0])]: row 1 and columns A:B must be frozen; run sync_xlsx.ps1"
+            }
+        } finally { $zip.Dispose() }
     }
 }
 
