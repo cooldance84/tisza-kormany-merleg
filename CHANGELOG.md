@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-11-24 – elfogadott adó- és nyugdíjcsomag, új tétel: sport-összeférhetetlenség
+
+47 → **48 tétel**. Az Országgyűlés 2026. november 24-én elfogadta az adócsomagot és a nyugdíjtörvényt (T/932.), de egyiket sem hirdették ki, és 2027 előtt nem hatályosak, ezért a 🟦 tételek 🟦-k maradnak. Kivétel a 42. tétel, mert a módszertan szerint a programtól kedvezőtlenül eltérő intézkedés elfogadáskor ⚠️ lesz.
+
+- **42. Anyák SZJA-mentessége** – 🟦 → ⚠️: elfogadva (135–47–7); a kétgyermekes anyák mentessége a 40. életév évéig jár, havi 1 millió Ft-os korláttal, és elmarad a 2025-ben törvénybe írt kiterjesztés;
+- **30, 31** – családi pótlék és adójóváírás elfogadva (135–47–7); egygyermekes családi pótlék 2027-től 24 400 Ft/hó; a jóváírás kifutási határát a források eltérően közlik (680 vagy 694 ezer Ft);
+- **32, 35, 36, 46** – nyugdíjtörvény elfogadva (189–1); a folyósított kisnyugdíjak felzárkóztatásáról szóló kormányrendelet még nem jelent meg;
+- **40. Vagyonadó** (134–49–7), **41. KATA** (135–48–6) – elfogadva;
+- **1. EU-pénzek** – az Európai Bizottság 2026. november 20-án előzetesen, részben jóváhagyta a ~10 Mrd eurós RRF-kérelmet (126/127 mérföldkő); 🔄 marad;
+- **9. Vagyonnyilatkozatok** – a vagyonosodási törvényt a köztársasági elnök visszaküldte, a parlament november 24-én változatlanul újra elfogadta (139–49); ↗️ marad;
+- **19. Közmédia** – a Független Közmédia Testület tagjait november 24-én nem sikerült megválasztani; 🔄 marad;
+- **47. Ügynökakták** – a nyitottaktak.hu november 4-én elindult; a B-dossziék 2027. február 25-ig követik, ezért ↗️ marad;
+- **új: 48. Sport és politika összeférhetetlensége** (↗️) – elfogadva (140–49), még nincs kihirdetve. A konkrét szabály kormányzati bejelentésből ered, nem szó szerinti programpont;
+- Forrásjegyzék: +3 forrás (kormany.hu, Infostart, Euronews).
+
+Státuszok: ✅ 6, ↗️ 11 (+1), 🔄 7, 🟦 16 (−1), ⏳ 2, ⚠️ 4 (+1), ❌ 2.
+
 ## 2026-11-02 – benyújtott 2027-es törvényjavaslatok, új tétel: ügynökakták
 
 46 → **47 tétel**. A meglévő tételek státusza nem változott: a törvényjavaslatokat benyújtották, de még nem fogadták el, ezért a 🟦 tételek 🟦-k maradnak.
