@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-11-24 – a 2026-10-19 óta nem ellenőrzött tételek
+
+28 tétel újraellenőrizve (`Utolsó ellenőrzés`: 2026-11-24), státuszváltozás nélkül. A fejlemények a szöveg végére, a források a programlink elé kerültek.
+
+- **2. KEKVA-k** – a kekvák állami vagyonát augusztusban visszavették; az állami vagyonról szóló törvényt az államfő az Alkotmánybírósághoz küldte (döntés december 9-ig);
+- **3, 4, 5, 6** – minisztériumi átvilágítások; a Balásy-szerződések felmondása (kb. 150 Mrd Ft); 41 Mrd Ft-os megtakarítás az állami járműbeszerzésen; újabb 16 beruházás vesztette el a kiemelt státuszát (1144/2026. Korm. határozat);
+- **8. Integritás Hatóság** – 2026. évi XVIII. törvény, bővített jogkörök, két új elnökhelyettes;
+- **10. Magántőkealapok** – 2026. évi LXVIII. törvény, kihirdetve november 13-án;
+- **11. Elszámoltatás** – Hankó Balázs volt miniszter letartóztatása (NKA-ügy); jogerős ítélet még nincs, ezért ⚠️ marad;
+- **12. Kórházi fertőzések** – az adatbázis szeptember 4-én indult, egyelőre szűkített adatkörrel;
+- **16. Egészségügyi reform** – várólista-program kormányhatározattal; az október 15-i indulás csúszott;
+- **17. EU-politika** – a kormány 2026-ban háromszor blokkolta Ukrajna csatlakozási tárgyalásainak előrehaladását;
+- **18, 29. Költségvetés** – a 2026-os módosított költségvetés hiánycélja a GDP 7,5%-a; a tízhavi hiány 5462,5 Mrd Ft (ebből 2186 Mrd Ft RRF-előfinanszírozás);
+- **20, 24, 25** – nincs lezáró vizsgálat, megbékélési program, illetve nyilvános jelentés; a 25.-nél a Szijjártó-vizsgálat megerősítése;
+- **27. Iskolakezdési támogatás** – a második részlet kézbesítése november 10–30.; 🔄 marad, amíg le nem zárul;
+- **43. NOKS** – a kormányfő által október közepére ígért első béremelési lépcső elmaradt;
+- **15, 22, 23, 33, 34, 37, 38, 39, 44, 45** – a 2027-es költségvetést még nem fogadták el (zárószavazás decemberben).
+
+Nem ellenőrizve (jogszabállyal teljesült ✅ tételek, `Utolsó ellenőrzés` 2026-10-19 maradt): 7, 13, 14, 26, 28.
+
 ## 2026-11-24 – README és eszközök
 
 Tartalmi (státusz-) változás nincs.
