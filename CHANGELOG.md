@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-24 – 25. tétel: ❌ → ↗️
+
+- **25. Orosz befolyás feltárása** – ❌ Nem teljesült → **↗️ Előrelépés**. Konkrét kormányzati lépések: 2026 májusában egy, szeptember 8-án tíz orosz diplomata kiutasítása; a Szijjártó Péter orosz kapcsolatairól indított vizsgálat (július); a Külügyminisztérium november 18-i belső vizsgálata a választás előtt Moszkvából állítólag hazahozatott iratok ügyében, amely Panyi Szabolcs könyvének állításai nyomán indult. A programban vállalt átfogó, nyilvános jelentés még nem készült el, ezért nem ✅. Panyi könyve újságírói munka: a tétel háttérként hivatkozik rá, a státuszt a kormányzati lépések adják.
+
+Státuszok: ✅ 8, ↗️ 15 (+1), 🔄 8, 🟦 16, ⏳ 4, ⚠️ 4, ❌ 1 (−1).
+
 ## 2026-11-24 – 55. tétel: ❌ → ↗️
 
 - **55. Önkormányzati hatáskörök és források** – ❌ Nem teljesült → **↗️ Előrelépés**. A források terén konkrét lépések történtek: a kormány júniusban átütemezte a főváros szolidaritási hozzájárulásának befizetését, októberben mintegy 120 milliárd Ft támogatást adott Budapestnek. A 2027-es költségvetési javaslat 62 milliárd Ft-tal (~15%) csökkentené a hozzájárulást, és megszüntetné az iparűzési adó növekményének elvonását; ezek az elfogadással lépnek hatályba. A hatáskörök visszaadása még nem kezdődött el, ezért nem ✅ és nem 🔄.
