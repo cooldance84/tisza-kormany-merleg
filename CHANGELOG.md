@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-24 – CONTRIBUTING.md frissítése
+
+Az „Adatmódosítás pull requestben” lépései igazodnak a jelenlegi szabályokhoz és ellenőrzésekhez: a darabszámokat a README státusztáblájában is frissíteni kell; a `Vállalt határidő` kötelező és csak programbeli határidő lehet; minden módosításhoz CHANGELOG-bejegyzés kell; a színezést és a rögzítést a `sync_xlsx.ps1` intézi; a validátor által ellenőrzött elemek felsorolva.
+
 ## 2026-11-24 – Excel: színezés, rögzített oszlopok, Forrásjegyzék és Projekt lap
 
 Tartalmi (státusz-) változás nincs.
