@@ -5,7 +5,8 @@
 Tartalmi (státusz-) változás nincs.
 
 - README: a státusztábla aktuális darabszámokat kapott; a CSV az elsődleges, szerkesztett adat, az Excel ebből készül (a korábbi szöveg fordítva állította); frissítési lépések; a program „első intézkedései” és a jogi lépésre adott ✅ értelmezése a módszertanban; a programidézetek elsődleges forrása a program PDF-je;
-- `data/README.md`: a `Vállalt határidő` oszlop `első intézkedések` értéke; az xlsx-fájlnév dátumának magyarázata;
+- **A munkafüzet új neve `data/TISZA_kormany_merleg.xlsx`** (korábban `TISZA_kormany_merleg_2026-10-19.xlsx`). Egyszeri átnevezés: a dátum nélküli név frissítéskor sem változik, így a rá mutató linkek ezentúl stabilak. A régi névre mutató közvetlen linkek a `main` ágon nem működnek tovább, a régi commitokban a fájl a régi néven elérhető marad;
+- `data/README.md`: a `Vállalt határidő` oszlop `első intézkedések` értéke; az új fájlnév;
 - `scripts/sync_xlsx.ps1`: az *Összefoglaló* címébe és a *Projekt* munkalap „Utolsó frissítés” sorába a legkésőbbi „Utolsó ellenőrzés” dátuma kerül (eddig 2026.10.19. maradt);
 - `scripts/validate.ps1`: ellenőrzi a README státusztáblájának darabszámait, az „Utolsó frissítés” dátumát és a munkafüzet frissítési dátumait.
 

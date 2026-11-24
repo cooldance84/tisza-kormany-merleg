@@ -5,7 +5,7 @@ A könyvtár a TISZA-kormány mérleg aktuális, géppel is könnyen feldolgozha
 - **TISZA_merleg.csv** – a teljes mérleg, 56 tétellel
 - **Osszefoglalo.csv** – státuszok, jelentésük és tételszámuk
 - **Forrasjegyzek.csv** – kiemelt források
-- **TISZA_kormany_merleg_2026-10-19.xlsx** – ugyanez Excel-munkafüzetként (plusz *Projekt* munkalap)
+- **TISZA_kormany_merleg.xlsx** – ugyanez Excel-munkafüzetként (plusz *Projekt* munkalap)
 
 **Állapot:** első snapshot 2026-10-19, frissítések 2026-11-02 és 2026-11-24. Tételenként az `Utolsó ellenőrzés` oszlop mutatja, mikor vetették össze utoljára a forrásokkal; a változások a [`CHANGELOG.md`](../CHANGELOG.md)-ben vannak.
 
@@ -39,4 +39,4 @@ Egy cellában több forrás is lehet, ilyenkor soronként egy szerepel (idézőj
 
 ## Excel-munkafüzet
 
-A *TISZA mérleg* és a *Forrásjegyzék* munkalapnak cellára egyeznie kell a megfelelő CSV-vel; az *Összefoglaló* munkalap a darabszámokat `COUNTIF` képlettel, a teljes *Státusz* oszlopra számolja. A munkafüzetet a [`scripts/sync_xlsx.ps1`](../scripts/sync_xlsx.ps1) állítja elő a CSV-kből (a formázás megmarad); kézi Excel-szerkesztés helyett ezt futtasd, az eltérést a validátor jelzi. A szkript az *Összefoglaló* címében és a *Projekt* munkalap „Utolsó frissítés” sorában a legkésőbbi `Utolsó ellenőrzés` dátumát írja be. A fájlnévben szereplő dátum (2026-10-19) az első kiadásé, a hivatkozások stabilitása miatt nem változik.
+A *TISZA mérleg* és a *Forrásjegyzék* munkalapnak cellára egyeznie kell a megfelelő CSV-vel; az *Összefoglaló* munkalap a darabszámokat `COUNTIF` képlettel, a teljes *Státusz* oszlopra számolja. A munkafüzetet a [`scripts/sync_xlsx.ps1`](../scripts/sync_xlsx.ps1) állítja elő a CSV-kből (a formázás megmarad); kézi Excel-szerkesztés helyett ezt futtasd, az eltérést a validátor jelzi. A szkript az *Összefoglaló* címében és a *Projekt* munkalap „Utolsó frissítés” sorában a legkésőbbi `Utolsó ellenőrzés` dátumát írja be. A fájlnév szándékosan dátum nélküli (2026. november 24-ig `TISZA_kormany_merleg_2026-10-19.xlsx` volt), így a rá mutató hivatkozások frissítéskor sem változnak; a frissítés dátuma a munkalapokon látható.

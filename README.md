@@ -15,7 +15,7 @@ A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatok
 - [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok, jelentésük és tételszámuk
 - [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
 
-A **CSV-k az elsődleges, szerkesztett adatok**; az Excel-munkafüzet ([`data/TISZA_kormany_merleg_2026-10-19.xlsx`](data/TISZA_kormany_merleg_2026-10-19.xlsx), a fájlnév a stabil hivatkozás kedvéért maradt) ezekből készül. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md), a változások: [`CHANGELOG.md`](CHANGELOG.md).
+A **CSV-k az elsődleges, szerkesztett adatok**; az Excel-munkafüzet ([`data/TISZA_kormany_merleg.xlsx`](data/TISZA_kormany_merleg.xlsx)) ezekből készül. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md), a változások: [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Ellenőrzés
 
