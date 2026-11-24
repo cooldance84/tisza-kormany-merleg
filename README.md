@@ -46,9 +46,9 @@ Az aktuális darabszámokkal (a [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv)
 | ↗️ **Előrelépés** | Konkrét lépés történt | 15 |
 | 🔄 **Folyamatban** | Elindult, de még nem lezárt | 8 |
 | 🟦 **2027-re bejelentve** | Konkrét intézkedést / összeget bejelentettek, de még nem hatályos | 16 |
-| ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ | 4 |
+| ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ | 5 |
 | ⚠️ **Hiányosság** | Problémás, részleges, késedelmes vagy az eredeti vállalástól eltérő végrehajtás | 4 |
-| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg | 1 |
+| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg | 0 |
 
 ## Módszertan
 
@@ -75,7 +75,7 @@ Ha a vállalás egy jogi lépés (pl. csatlakozás, jogkör biztosítása), a �
 
 ### A program „első intézkedései”
 
-A program (*A működő és emberséges Magyarország alapjai*, 10–11. o.) külön listában sorolja fel azokat az intézkedéseket, amelyek „azonnal érezhető változást” hoznak. Az ide tartozó tételeknél a `Vállalt határidő` oszlop értéke `első intézkedések`. Ha egy ilyen vállalás a kormányváltás után hónapokkal sem indult el érdemben, ❌ státuszt kap; ha van lépés, de nincs elég konkrét végrehajtási információ, ⏳-t.
+A program (*A működő és emberséges Magyarország alapjai*, 10–11. o.) külön listában sorolja fel azokat az intézkedéseket, amelyek „azonnal érezhető változást” hoznak. Az ide tartozó tételeknél a `Vállalt határidő` oszlop értéke `első intézkedések`. Ha egy ilyen vállalás a kormányváltás után hónapokkal sem indult el érdemben, ❌ státuszt kap. Ha csak gesztusok vagy előkészítő lépések látszanak, vagy nincs elég konkrét végrehajtási információ, ⏳-t kap, a tétel szövegében megadott felülvizsgálati dátumig; ha addig sem indul el, ❌ lesz.
 
 ## Forráskezelés
 

@@ -1,8 +1,11 @@
 # Changelog
 
-## 2026-11-24 – 24. tétel átnézve, ❌ marad
+## 2026-11-24 – 24. tétel: ❌ → ⏳, felülvizsgálat év végén
 
-- **24. Nemzeti megbékélés** – a szöveg kiegészült a gesztusokkal (a miniszterelnök május 9-i bocsánatkérése és felhívása, a parlamenti bizottsági tisztségekről kötött megállapodás, az ÁBTL bocsánatkérése Lezsák Sándortól). A státusz ❌ marad: a program kifejezetten „a nemzeti megbékélés programját” vállalta, ilyen program vagy intézmény nem jött létre, a felsorolt lépések pedig szimbolikusak vagy a parlamenti szokásokat követik. Az 55. és a 25. tételnél ezzel szemben pénzügyi döntések, kiutasítások és hivatalos vizsgálatok indokolták a ↗️-t.
+- **24. Nemzeti megbékélés** – ❌ Nem teljesült → **⏳ Nyitott, 2026. december 31-i felülvizsgálattal**. A szöveg kiegészült a gesztusokkal (a miniszterelnök május 9-i bocsánatkérése és felhívása, a parlamenti bizottsági tisztségekről kötött megállapodás, az ÁBTL bocsánatkérése Lezsák Sándortól). A program „a nemzeti megbékélés programját” vállalta; ilyen program vagy intézmény még nem jött létre, a gesztusok miatt azonban a tétel az év végéig nyitott. Ha addig sem indul el érdemi program, ❌ lesz.
+- README, módszertan: az „első intézkedések” szabálya kiegészült – csak gesztusok vagy előkészítés esetén ⏳ jár, a tételben megadott felülvizsgálati dátumig.
+
+Státuszok: ✅ 8, ↗️ 15, 🔄 8, 🟦 16, ⏳ 5 (+1), ⚠️ 4, ❌ 0 (−1).
 
 ## 2026-11-24 – 25. tétel: ❌ → ↗️
 
