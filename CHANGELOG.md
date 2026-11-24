@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-11-24 – a program „első intézkedések” listájának tételei
+
+48 → **56 tétel**. A program (*A működő és emberséges Magyarország alapjai*, 10–11. o.) „Az első intézkedések azonnal érezhető változást hoznak” listájának mérlegbe még fel nem vett pontjai. A programidézetek szó szerintiek, a forrás a program PDF-je.
+
+Új tételek:
+- **49. Európai Ügyészség** (✅) – a Bizottság 2026. július 10-én jóváhagyta a csatlakozást; a hazai hivatal 2027 elején állhat fel;
+- **50. Vagyonvisszaszerzési Hivatal** (↗️) – 2026. évi XXXIV. törvény, hatályos július 29-től, elnöke Unger Anna; visszaszerzett vagyonról még nincs adat;
+- **51. Kormányülések és titkos döntések nyilvánossága** (🔄) – 1143/2026. (V. 14.) Korm. határozat; a nem nyilvános határozatok listája szeptember 29-én megjelent, a kormányülési összefoglalók még nem;
+- **52. Gyermekvédelmi vizsgálóbizottság** (↗️) – 19/2026. (V. 27.) OGY határozat; jelentés még nincs;
+- **53. MNB-alapítványok iratai** (⏳) – az iratok a vizsgálóbizottsághoz és az ügyészséghez kerültek, a nyilvánossághoz nem;
+- **54. Állami vagyonkataszter** (⏳) – október 19-i bejelentés egységes nyilvános adatbázisról, elkészült kataszter nincs;
+- **55. Önkormányzati hatáskörök és források** (❌) – a szolidaritási hozzájárulás marad, visszaadó törvény nincs. A 24. és 25. tétellel egységesen az „első intézkedések” közé sorolt, érdemben el nem indult vállalás ❌;
+- **56. Miniszteri vétójog** (✅) – 90/2026. (V. 13.) Korm. rendelet; a programban megnevezett négy tárca kapta meg.
+
+Bővített tételek (státuszváltozás nélkül):
+- **19. Közmédia** – a programidézet kiegészült a hírsugárzás felfüggesztésével; a hírszolgáltatás 2026. július 7-én leállt, azóta csak hírsáv működik;
+- **21. Oktatás** – a Klebelsberg Központ átalakítása és az igazgatói munkáltatói jogok; a programidézet kiegészült.
+
+Státuszok: ✅ 8 (+2), ↗️ 13 (+2), 🔄 8 (+1), 🟦 16, ⏳ 4 (+2), ⚠️ 4, ❌ 3 (+1).
+
 ## 2026-11-24 – elfogadott adó- és nyugdíjcsomag, új tétel: sport-összeférhetetlenség
 
 47 → **48 tétel**. Az Országgyűlés 2026. november 24-én elfogadta az adócsomagot és a nyugdíjtörvényt (T/932.), de egyiket sem hirdették ki, és 2027 előtt nem hatályosak, ezért a 🟦 tételek 🟦-k maradnak. Kivétel a 42. tétel, mert a módszertan szerint a programtól kedvezőtlenül eltérő intézkedés elfogadáskor ⚠️ lesz.

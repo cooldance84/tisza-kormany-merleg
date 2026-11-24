@@ -11,7 +11,7 @@ Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatal
 
 A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatokat:
 
-- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **48 tételes mérleg**
+- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **56 tételes mérleg**
 - [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok, jelentésük és tételszámuk
 - [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
 

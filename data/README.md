@@ -2,7 +2,7 @@
 
 A könyvtár a TISZA-kormány mérleg aktuális, géppel is könnyen feldolgozható CSV-változatait tartalmazza.
 
-- **TISZA_merleg.csv** – a teljes mérleg, 48 tétellel
+- **TISZA_merleg.csv** – a teljes mérleg, 56 tétellel
 - **Osszefoglalo.csv** – státuszok, jelentésük és tételszámuk
 - **Forrasjegyzek.csv** – kiemelt források
 - **TISZA_kormany_merleg_2026-10-19.xlsx** – ugyanez Excel-munkafüzetként (plusz *Projekt* munkalap)
