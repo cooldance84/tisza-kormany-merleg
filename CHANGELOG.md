@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-24 – 55. tétel: ❌ → ↗️
+
+- **55. Önkormányzati hatáskörök és források** – ❌ Nem teljesült → **↗️ Előrelépés**. A források terén konkrét lépések történtek: a kormány júniusban átütemezte a főváros szolidaritási hozzájárulásának befizetését, októberben mintegy 120 milliárd Ft támogatást adott Budapestnek. A 2027-es költségvetési javaslat 62 milliárd Ft-tal (~15%) csökkentené a hozzájárulást, és megszüntetné az iparűzési adó növekményének elvonását; ezek az elfogadással lépnek hatályba. A hatáskörök visszaadása még nem kezdődött el, ezért nem ✅ és nem 🔄.
+
+Státuszok: ✅ 8, ↗️ 14 (+1), 🔄 8, 🟦 16, ⏳ 4, ⚠️ 4, ❌ 2 (−1).
+
 ## 2026-11-24 – a 2026-10-19 óta nem ellenőrzött tételek
 
 28 tétel újraellenőrizve (`Utolsó ellenőrzés`: 2026-11-24), státuszváltozás nélkül. A fejlemények a szöveg végére, a források a programlink elé kerültek.

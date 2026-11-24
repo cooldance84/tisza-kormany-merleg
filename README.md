@@ -43,12 +43,12 @@ Az aktuális darabszámokkal (a [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv)
 | Jelölés | Jelentés | Darab |
 |---|---|---|
 | ✅ **Eredmény** | Kézzelfoghatóan megvalósult intézkedés vagy eredmény | 8 |
-| ↗️ **Előrelépés** | Konkrét lépés történt | 13 |
+| ↗️ **Előrelépés** | Konkrét lépés történt | 14 |
 | 🔄 **Folyamatban** | Elindult, de még nem lezárt | 8 |
 | 🟦 **2027-re bejelentve** | Konkrét intézkedést / összeget bejelentettek, de még nem hatályos | 16 |
 | ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ | 4 |
 | ⚠️ **Hiányosság** | Problémás, részleges, késedelmes vagy az eredeti vállalástól eltérő végrehajtás | 4 |
-| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg | 3 |
+| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg | 2 |
 
 ## Módszertan
 
