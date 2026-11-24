@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-24 – README és eszközök
+
+Tartalmi (státusz-) változás nincs.
+
+- README: a státusztábla aktuális darabszámokat kapott; a CSV az elsődleges, szerkesztett adat, az Excel ebből készül (a korábbi szöveg fordítva állította); frissítési lépések; a program „első intézkedései” és a jogi lépésre adott ✅ értelmezése a módszertanban; a programidézetek elsődleges forrása a program PDF-je;
+- `data/README.md`: a `Vállalt határidő` oszlop `első intézkedések` értéke; az xlsx-fájlnév dátumának magyarázata;
+- `scripts/sync_xlsx.ps1`: az *Összefoglaló* címébe és a *Projekt* munkalap „Utolsó frissítés” sorába a legkésőbbi „Utolsó ellenőrzés” dátuma kerül (eddig 2026.10.19. maradt);
+- `scripts/validate.ps1`: ellenőrzi a README státusztáblájának darabszámait, az „Utolsó frissítés” dátumát és a munkafüzet frissítési dátumait.
+
 ## 2026-11-24 – a program „első intézkedések” listájának tételei
 
 48 → **56 tétel**. A program (*A működő és emberséges Magyarország alapjai*, 10–11. o.) „Az első intézkedések azonnal érezhető változást hoznak” listájának mérlegbe még fel nem vett pontjai. A programidézetek szó szerintiek, a forrás a program PDF-je.

@@ -146,6 +146,25 @@ foreach ($doc in 'README.md', 'data/README.md') {
     }
 }
 
+# --- README status table and last-updated date ---------------------------------------
+$readme = [IO.File]::ReadAllText((Join-Path $root 'README.md'), $utf8)
+foreach ($k in $known.Keys) {
+    # table row: | <emoji> **<name>** | <meaning> | <count> |
+    $emoji, $label = $k -split ' ', 2
+    $m = [regex]::Match($readme, '\|\s*' + [regex]::Escape($emoji) + '\s*\*\*' + [regex]::Escape($label) + '\*\*\s*\|[^|\n]*\|\s*(\d+)\s*\|')
+    if (-not $m.Success) { Fail "README.md: status table has no count column for '$k'" }
+    elseif ([int]$m.Groups[1].Value -ne $known[$k]) { Fail "README.md: status table says $($m.Groups[1].Value) for '$k', Osszefoglalo.csv has $($known[$k])" }
+}
+$latest = @($main.Rows | ForEach-Object { $_[8] }) | Sort-Object | Select-Object -Last 1
+$d = [datetime]::MinValue
+if ([datetime]::TryParseExact($latest, 'yyyy-MM-dd', [Globalization.CultureInfo]::InvariantCulture, 'None', [ref]$d)) {
+    $months = @('janu\u00e1r', 'febru\u00e1r', 'm\u00e1rcius', '\u00e1prilis', 'm\u00e1jus', 'j\u00fanius',
+        'j\u00falius', 'augusztus', 'szeptember', 'okt\u00f3ber', 'november', 'december') | ForEach-Object { [regex]::Unescape($_) }
+    $expected = '{0}. {1} {2}.' -f $d.Year, $months[$d.Month - 1], $d.Day
+    $label = [regex]::Unescape('**Utols\u00f3 friss\u00edt\u00e9s:** ')
+    if (-not $readme.Contains($label + $expected)) { Fail "README.md: last-updated line should read '$label$expected' (latest last-checked date in TISZA_merleg.csv)" }
+}
+
 # --- xlsx <-> CSV -----------------------------------------------------------------
 $books = @(Get-ChildItem $data -Filter '*.xlsx')
 if ($books.Count -ne 1) { Fail "data/: expected exactly one .xlsx, found $($books.Count)" }
@@ -192,6 +211,14 @@ else {
             if ($f.Value -match 'COUNTIF\(.*\$E\$\d+:\$E\$(\d+)' -and [int]$Matches[1] -lt 1000) {
                 Fail "$($books[0].Name) [$($names[1])]!$($f.Key): range ends at row $($Matches[1]); use `$E:`$E"
             }
+        }
+        # Date stamps written by sync_xlsx.ps1 must match the latest last-checked date.
+        $stamp = $latest.Replace('-', '.') + '.'
+        $title = @($sheets[$names[1]].Rows | ForEach-Object { $_[0] } | Where-Object { $_ -match [regex]::Unescape('friss\u00edtve: ') })
+        if ($title.Count -and $title[0] -notmatch [regex]::Escape($stamp)) { Fail "$($books[0].Name) [$($names[1])]: title '$($title[0])' does not show $stamp; run sync_xlsx.ps1" }
+        if ($names.Count -ge 4) {
+            $row = @($sheets[$names[3]].Rows | Where-Object { $_[0] -eq [regex]::Unescape('Utols\u00f3 friss\u00edt\u00e9s') })
+            if ($row.Count -and $row[0][1] -ne $stamp) { Fail "$($books[0].Name) [$($names[3])]: last-updated is '$($row[0][1])', expected $stamp; run sync_xlsx.ps1" }
         }
     }
 }

@@ -15,7 +15,7 @@ A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatok
 - [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok, jelentésük és tételszámuk
 - [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
 
-A CSV-k a 2026.10.19-én frissített Excel-munkafüzet tartalmából készültek. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md).
+A **CSV-k az elsődleges, szerkesztett adatok**; az Excel-munkafüzet ([`data/TISZA_kormany_merleg_2026-10-19.xlsx`](data/TISZA_kormany_merleg_2026-10-19.xlsx), a fájlnév a stabil hivatkozás kedvéért maradt) ezekből készül. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md), a változások: [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Ellenőrzés
 
@@ -24,27 +24,31 @@ A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request ut
 - a sorszámok (`ID`) hézag nélkül 1-től N-ig mennek;
 - minden tételnek van státusza és legalább egy `https://` forrása;
 - a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
-- a README-kben szereplő tételszám egyezik a CSV-vel;
-- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel;
+- a README-kben szereplő tételszám, a lenti státusztábla darabszámai és az „Utolsó frissítés” dátuma (= a legkésőbbi „Utolsó ellenőrzés”) egyezik a CSV-vel;
+- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel, a munkalapokon feltüntetett frissítési dátum pedig a legkésőbbi „Utolsó ellenőrzés”;
 - a munkafüzetben nincsenek egymást átfedő egyesített cellák (ezt az Excel megnyitáskor „javítja”);
 - minden tételnek van `ÉÉÉÉ-HH-NN` formátumú, nem jövőbeli „Utolsó ellenőrzés” dátuma;
 - a munkafüzet nem visel Microsoft-érzékenységi címkét (MSIP): a címke a címkéző szervezet azonosítóit írja a fájlba, a titkosító címke pedig olvashatatlanná teszi.
 
 Helyben: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`.
 
-Az Excel-munkafüzetet a CSV-kből a [`scripts/sync_xlsx.ps1`](scripts/sync_xlsx.ps1) frissíti – így a munkafüzetet nem kell Excelben szerkeszteni.
+Az Excel-munkafüzetet a CSV-kből a [`scripts/sync_xlsx.ps1`](scripts/sync_xlsx.ps1) frissíti (a munkalapok frissítési dátumát is) – így a munkafüzetet nem kell Excelben szerkeszteni.
+
+Frissítés lépései: CSV-k szerkesztése → `CHANGELOG.md` bejegyzés → `scripts/sync_xlsx.ps1` → `scripts/validate.ps1`.
 
 ## Státuszok
 
-| Jelölés | Jelentés |
-|---|---|
-| ✅ **Eredmény** | Kézzelfoghatóan megvalósult intézkedés vagy eredmény |
-| ↗️ **Előrelépés** | Konkrét lépés történt |
-| 🔄 **Folyamatban** | Elindult, de még nem lezárt |
-| 🟦 **2027-re bejelentve** | Konkrét intézkedést / összeget bejelentettek, de még nem hatályos |
-| ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ |
-| ⚠️ **Hiányosság** | Problémás, részleges, késedelmes vagy az eredeti vállalástól eltérő végrehajtás |
-| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg |
+Az aktuális darabszámokkal (a [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) alapján):
+
+| Jelölés | Jelentés | Darab |
+|---|---|---|
+| ✅ **Eredmény** | Kézzelfoghatóan megvalósult intézkedés vagy eredmény | 8 |
+| ↗️ **Előrelépés** | Konkrét lépés történt | 13 |
+| 🔄 **Folyamatban** | Elindult, de még nem lezárt | 8 |
+| 🟦 **2027-re bejelentve** | Konkrét intézkedést / összeget bejelentettek, de még nem hatályos | 16 |
+| ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ | 4 |
+| ⚠️ **Hiányosság** | Problémás, részleges, késedelmes vagy az eredeti vállalástól eltérő végrehajtás | 4 |
+| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg | 3 |
 
 ## Módszertan
 
@@ -67,9 +71,17 @@ Egy eseményt csak egy tétel értékel – ha két tétel ugyanarra az ügyre v
 
 Ugyanígy egy folyamatban lévő nyomozás, vizsgálat vagy jogalkotási folyamat sem tekinthető lezárt eredménynek.
 
+Ha a vállalás egy jogi lépés (pl. csatlakozás, jogkör biztosítása), a ✅ a lépés megtörténtét jelzi; ha a gyakorlati működés még hátravan, azt a szöveg külön jelzi.
+
+### A program „első intézkedései”
+
+A program (*A működő és emberséges Magyarország alapjai*, 10–11. o.) külön listában sorolja fel azokat az intézkedéseket, amelyek „azonnal érezhető változást” hoznak. Az ide tartozó tételeknél a `Vállalt határidő` oszlop értéke `első intézkedések`. Ha egy ilyen vállalás a kormányváltás után hónapokkal sem indult el érdemben, ❌ státuszt kap; ha van lépés, de nincs elég konkrét végrehajtási információ, ⏳-t.
+
 ## Forráskezelés
 
-A mérleg soronként tartalmazza az ellenőrzéshez használt linkeket. Elsődleges forrásként előnyben részesítjük:
+A mérleg soronként tartalmazza az ellenőrzéshez használt linkeket. A programidézetek elsődleges forrása a TISZA teljes programja ([PDF](https://cdn.tisza.work/A%20m%C5%B1k%C3%B6d%C5%91%20%C3%A9s%20embers%C3%A9ges%20Magyarorsz%C3%A1g%20alapjai.pdf)); ahol csak sajtóösszefoglaló érhető el, a link `Program-összefoglaló:` címkét kap.
+
+Az intézkedések ellenőrzéséhez elsődleges forrásként előnyben részesítjük:
 
 - Magyar Közlöny / Nemzeti Jogszabálytár
 - KSH
