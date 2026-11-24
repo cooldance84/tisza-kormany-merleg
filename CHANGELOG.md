@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-24 – 24. tétel átnézve, ❌ marad
+
+- **24. Nemzeti megbékélés** – a szöveg kiegészült a gesztusokkal (a miniszterelnök május 9-i bocsánatkérése és felhívása, a parlamenti bizottsági tisztségekről kötött megállapodás, az ÁBTL bocsánatkérése Lezsák Sándortól). A státusz ❌ marad: a program kifejezetten „a nemzeti megbékélés programját” vállalta, ilyen program vagy intézmény nem jött létre, a felsorolt lépések pedig szimbolikusak vagy a parlamenti szokásokat követik. Az 55. és a 25. tételnél ezzel szemben pénzügyi döntések, kiutasítások és hivatalos vizsgálatok indokolták a ↗️-t.
+
 ## 2026-11-24 – 25. tétel: ❌ → ↗️
 
 - **25. Orosz befolyás feltárása** – ❌ Nem teljesült → **↗️ Előrelépés**. Konkrét kormányzati lépések: 2026 májusában egy, szeptember 8-án tíz orosz diplomata kiutasítása; a Szijjártó Péter orosz kapcsolatairól indított vizsgálat (július); a Külügyminisztérium november 18-i belső vizsgálata a választás előtt Moszkvából állítólag hazahozatott iratok ügyében, amely Panyi Szabolcs könyvének állításai nyomán indult. A programban vállalt átfogó, nyilvános jelentés még nem készült el, ezért nem ✅. Panyi könyve újságírói munka: a tétel háttérként hivatkozik rá, a státuszt a kormányzati lépések adják.
