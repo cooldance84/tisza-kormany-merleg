@@ -118,7 +118,31 @@ try {
         $v = $fc.SelectSingleNode('x:v', $ns); if (-not $v) { $v = $doc.CreateElement('x', 'v', $nsUri); [void]$fc.AppendChild($v) }
         $v.InnerText = [string]$count
     }
+
+    # "last updated" stamps: the latest last-checked date of the main table, as YYYY.MM.DD.
+    # (\u escapes keep this file ASCII-only for Windows PowerShell 5.1)
+    $checkedCol = [array]::IndexOf($main[0], ($main[0] | Where-Object { $_ -like 'Utols*ellen*' } | Select-Object -First 1))
+    $stamp = (@($main | Select-Object -Skip 1 | ForEach-Object { $_[$checkedCol] }) | Sort-Object | Select-Object -Last 1).Replace('-', '.') + '.'
+    $titleRe = [regex]::Unescape('friss\u00edtve: ') + '\d{4}\.\d{2}\.\d{2}\.'
+    foreach ($v in @($doc.SelectNodes('//x:c/x:v', $ns))) {
+        if ($v.InnerText -match $titleRe) { $v.InnerText = $v.InnerText -replace $titleRe, ([regex]::Unescape('friss\u00edtve: ') + $stamp) }
+    }
     Save-Xml $parts[1] $doc
+
+    # project sheet (4th): "Utolso frissites" row -> date and a pointer to the changelog
+    if ($parts.Count -ge 4) {
+        $doc = Get-Xml $parts[3]
+        $ns = New-Object Xml.XmlNamespaceManager $doc.NameTable; $ns.AddNamespace('x', $nsUri)
+        foreach ($row in @($doc.SelectNodes('//x:sheetData/x:row', $ns))) {
+            $rn = $row.GetAttribute('r')
+            $a = $row.SelectSingleNode("x:c[@r='A$rn']/x:v", $ns)
+            if (-not $a -or $a.InnerText -ne [regex]::Unescape('Utols\u00f3 friss\u00edt\u00e9s')) { continue }
+            $b = $row.SelectSingleNode("x:c[@r='B$rn']/x:v", $ns); if ($b) { $b.InnerText = $stamp }
+            $c = $row.SelectSingleNode("x:c[@r='C$rn']/x:v", $ns)
+            if ($c) { $c.InnerText = [regex]::Unescape('A v\u00e1ltoz\u00e1sok r\u00e9szletei: CHANGELOG.md') }
+        }
+        Save-Xml $parts[3] $doc
+    }
 
     $wbText = $wb.OuterXml
     if ($wbText -notmatch 'calcPr') {

@@ -2,7 +2,7 @@
 
 Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatalba lépett TISZA-kormány programvállalásairól, intézkedéseiről, bejelentéseiről és hiányosságairól.
 
-**Utolsó frissítés:** 2026. november 2.
+**Utolsó frissítés:** 2026. november 24.
 
 > Ez a projekt nem pártkiadvány és nem kampányanyag.  
 > Célja, hogy ugyanazzal a mércével különválassza a programígéretet, a bejelentést, a jogszabályi döntést és a ténylegesen megvalósult eredményt.
@@ -11,40 +11,44 @@ Nyilvános, forrásolt és folyamatosan frissíthető mérleg a 2026-ban hivatal
 
 A repository diffelhető, nyílt formátumban is tartalmazza az aktuális adatokat:
 
-- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **47 tételes mérleg**
+- [`data/TISZA_merleg.csv`](data/TISZA_merleg.csv) – a teljes, **56 tételes mérleg**
 - [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) – státuszok, jelentésük és tételszámuk
 - [`data/Forrasjegyzek.csv`](data/Forrasjegyzek.csv) – kiemelt forrásjegyzék
 
-A CSV-k a 2026.10.19-én frissített Excel-munkafüzet tartalmából készültek. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md).
+A **CSV-k az elsődleges, szerkesztett adatok**; az Excel-munkafüzet ([`data/TISZA_kormany_merleg.xlsx`](data/TISZA_kormany_merleg.xlsx)) ezekből készül. A GitHubon a CSV a praktikusabb alapformátum, mert a változások soronként visszakövethetők és összehasonlíthatók. Az oszlopok leírása: [`data/README.md`](data/README.md), a változások: [`CHANGELOG.md`](CHANGELOG.md).
 
 ### Ellenőrzés
 
 A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request után lefut (GitHub Actions), és ellenőrzi, hogy:
 
 - a sorszámok (`ID`) hézag nélkül 1-től N-ig mennek;
-- minden tételnek van státusza és legalább egy `https://` forrása;
+- minden tételnek van státusza, kitöltött `Vállalt határidő` mezője és legalább egy `https://` forrása;
 - a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
-- a README-kben szereplő tételszám egyezik a CSV-vel;
-- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel;
+- a README-kben szereplő tételszám, a lenti státusztábla darabszámai és az „Utolsó frissítés” dátuma (= a legkésőbbi „Utolsó ellenőrzés”) egyezik a CSV-vel;
+- az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel, a munkalapokon feltüntetett frissítési dátum pedig a legkésőbbi „Utolsó ellenőrzés”;
 - a munkafüzetben nincsenek egymást átfedő egyesített cellák (ezt az Excel megnyitáskor „javítja”);
 - minden tételnek van `ÉÉÉÉ-HH-NN` formátumú, nem jövőbeli „Utolsó ellenőrzés” dátuma;
 - a munkafüzet nem visel Microsoft-érzékenységi címkét (MSIP): a címke a címkéző szervezet azonosítóit írja a fájlba, a titkosító címke pedig olvashatatlanná teszi.
 
 Helyben: `powershell -File scripts\validate.ps1` (Windows) vagy `pwsh -File scripts/validate.ps1`.
 
-Az Excel-munkafüzetet a CSV-kből a [`scripts/sync_xlsx.ps1`](scripts/sync_xlsx.ps1) frissíti – így a munkafüzetet nem kell Excelben szerkeszteni.
+Az Excel-munkafüzetet a CSV-kből a [`scripts/sync_xlsx.ps1`](scripts/sync_xlsx.ps1) frissíti (a munkalapok frissítési dátumát is) – így a munkafüzetet nem kell Excelben szerkeszteni.
+
+Frissítés lépései: CSV-k szerkesztése → `CHANGELOG.md` bejegyzés → `scripts/sync_xlsx.ps1` → `scripts/validate.ps1`.
 
 ## Státuszok
 
-| Jelölés | Jelentés |
-|---|---|
-| ✅ **Eredmény** | Kézzelfoghatóan megvalósult intézkedés vagy eredmény |
-| ↗️ **Előrelépés** | Konkrét lépés történt |
-| 🔄 **Folyamatban** | Elindult, de még nem lezárt |
-| 🟦 **2027-re bejelentve** | Konkrét intézkedést / összeget bejelentettek, de még nem hatályos |
-| ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ |
-| ⚠️ **Hiányosság** | Problémás, részleges, késedelmes vagy az eredeti vállalástól eltérő végrehajtás |
-| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg |
+Az aktuális darabszámokkal (a [`data/Osszefoglalo.csv`](data/Osszefoglalo.csv) alapján):
+
+| Jelölés | Jelentés | Darab |
+|---|---|---|
+| ✅ **Eredmény** | Kézzelfoghatóan megvalósult intézkedés vagy eredmény | 8 |
+| ↗️ **Előrelépés** | Konkrét lépés történt | 15 |
+| 🔄 **Folyamatban** | Elindult, de még nem lezárt | 8 |
+| 🟦 **2027-re bejelentve** | Konkrét intézkedést / összeget bejelentettek, de még nem hatályos | 16 |
+| ⏳ **Nyitott** | Van programvállalás, de még nincs elég konkrét végrehajtási információ | 5 |
+| ⚠️ **Hiányosság** | Problémás, részleges, késedelmes vagy az eredeti vállalástól eltérő végrehajtás | 4 |
+| ❌ **Nem teljesült** | A vállalás érdemben még nem valósult meg | 0 |
 
 ## Módszertan
 
@@ -67,9 +71,31 @@ Egy eseményt csak egy tétel értékel – ha két tétel ugyanarra az ügyre v
 
 Ugyanígy egy folyamatban lévő nyomozás, vizsgálat vagy jogalkotási folyamat sem tekinthető lezárt eredménynek.
 
+Ha a vállalás egy jogi lépés (pl. csatlakozás, jogkör biztosítása), a ✅ a lépés megtörténtét jelzi; ha a gyakorlati működés még hátravan, azt a szöveg külön jelzi.
+
+### Határidők és a tételek életciklusa
+
+A program általános határidőt nem ad: a vállalásokat „kormányra kerülésünk után” valósítják meg, vagyis a 2026–2030-as ciklusban. Konkrét határidőt csak egyes vállalásoknál mond. A `Vállalt határidő` oszlopba csak a program szövegében szereplő határidő kerülhet:
+
+| Érték | Jelentés | ❌ legkorábban |
+|---|---|---|
+| `első intézkedések` | a program 10–11. oldalán felsorolt, „azonnal érezhető változást” hozó intézkedések | a kormányzati év végén (2027. május 12.) |
+| `azonnal` | a programszöveg „azonnal” teljesítést ígér | a kormányzati év végén (2027. május 12.) |
+| konkrét év (pl. `2030-ra`) | a programszöveg dátumot nevez meg | a megnevezett határidő lejárta után |
+| `nincs megadva` | a program nem ad határidőt | a ciklus végén (2030) |
+
+Szabályok:
+
+- **A ❌ csak a határidő után jár.** Előtte legfeljebb ⚠️ (ha az eltérés már elfogadott döntésben látszik) vagy ⏳ (ha csak gesztusok, előkészítés látszanak, vagy nincs elég konkrét információ) adható.
+- A ⏳ tételeknél a szöveg felülvizsgálati dátumot adhat meg; ekkor a tételt újraértékeljük, de ❌-t a fenti táblázat szerint legkorábban kaphat.
+- **A teljesült (✅) tételek a listában maradnak** a ciklus végi mérleghez; ha egy intézkedést visszavonnak, a tétel újra megnyílik.
+- **Ciklus végi zárás:** a 2030-as választás előtt minden tétel végleges státuszt kap.
+
 ## Forráskezelés
 
-A mérleg soronként tartalmazza az ellenőrzéshez használt linkeket. Elsődleges forrásként előnyben részesítjük:
+A mérleg soronként tartalmazza az ellenőrzéshez használt linkeket. A programidézetek elsődleges forrása a TISZA teljes programja ([PDF](https://cdn.tisza.work/A%20m%C5%B1k%C3%B6d%C5%91%20%C3%A9s%20embers%C3%A9ges%20Magyarorsz%C3%A1g%20alapjai.pdf)); ahol csak sajtóösszefoglaló érhető el, a link `Program-összefoglaló:` címkét kap.
+
+Az intézkedések ellenőrzéséhez elsődleges forrásként előnyben részesítjük:
 
 - Magyar Közlöny / Nemzeti Jogszabálytár
 - KSH
