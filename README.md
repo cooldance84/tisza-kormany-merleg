@@ -22,7 +22,7 @@ A **CSV-k az elsődleges, szerkesztett adatok**; az Excel-munkafüzet ([`data/TI
 A [`scripts/validate.ps1`](scripts/validate.ps1) minden push és pull request után lefut (GitHub Actions), és ellenőrzi, hogy:
 
 - a sorszámok (`ID`) hézag nélkül 1-től N-ig mennek;
-- minden tételnek van státusza és legalább egy `https://` forrása;
+- minden tételnek van státusza, kitöltött `Vállalt határidő` mezője és legalább egy `https://` forrása;
 - a státuszok az [`Osszefoglalo.csv`](data/Osszefoglalo.csv) listájából valók, és a darabszámok egyeznek;
 - a README-kben szereplő tételszám, a lenti státusztábla darabszámai és az „Utolsó frissítés” dátuma (= a legkésőbbi „Utolsó ellenőrzés”) egyezik a CSV-vel;
 - az Excel-munkafüzet mérleg- és forrásjegyzék-munkalapja cellára egyezik a CSV-vel, a munkalapokon feltüntetett frissítési dátum pedig a legkésőbbi „Utolsó ellenőrzés”;
@@ -73,9 +73,23 @@ Ugyanígy egy folyamatban lévő nyomozás, vizsgálat vagy jogalkotási folyama
 
 Ha a vállalás egy jogi lépés (pl. csatlakozás, jogkör biztosítása), a ✅ a lépés megtörténtét jelzi; ha a gyakorlati működés még hátravan, azt a szöveg külön jelzi.
 
-### A program „első intézkedései”
+### Határidők és a tételek életciklusa
 
-A program (*A működő és emberséges Magyarország alapjai*, 10–11. o.) külön listában sorolja fel azokat az intézkedéseket, amelyek „azonnal érezhető változást” hoznak. Az ide tartozó tételeknél a `Vállalt határidő` oszlop értéke `első intézkedések`. Ha egy ilyen vállalás a kormányváltás után hónapokkal sem indult el érdemben, ❌ státuszt kap. Ha csak gesztusok vagy előkészítő lépések látszanak, vagy nincs elég konkrét végrehajtási információ, ⏳-t kap, a tétel szövegében megadott felülvizsgálati dátumig; ha addig sem indul el, ❌ lesz.
+A program általános határidőt nem ad: a vállalásokat „kormányra kerülésünk után” valósítják meg, vagyis a 2026–2030-as ciklusban. Konkrét határidőt csak egyes vállalásoknál mond. A `Vállalt határidő` oszlopba csak a program szövegében szereplő határidő kerülhet:
+
+| Érték | Jelentés | ❌ legkorábban |
+|---|---|---|
+| `első intézkedések` | a program 10–11. oldalán felsorolt, „azonnal érezhető változást” hozó intézkedések | a kormányzati év végén (2027. május 12.) |
+| `azonnal` | a programszöveg „azonnal” teljesítést ígér | a kormányzati év végén (2027. május 12.) |
+| konkrét év (pl. `2030-ra`) | a programszöveg dátumot nevez meg | a megnevezett határidő lejárta után |
+| `nincs megadva` | a program nem ad határidőt | a ciklus végén (2030) |
+
+Szabályok:
+
+- **A ❌ csak a határidő után jár.** Előtte legfeljebb ⚠️ (ha az eltérés már elfogadott döntésben látszik) vagy ⏳ (ha csak gesztusok, előkészítés látszanak, vagy nincs elég konkrét információ) adható.
+- A ⏳ tételeknél a szöveg felülvizsgálati dátumot adhat meg; ekkor a tételt újraértékeljük, de ❌-t a fenti táblázat szerint legkorábban kaphat.
+- **A teljesült (✅) tételek a listában maradnak** a ciklus végi mérleghez; ha egy intézkedést visszavonnak, a tétel újra megnyílik.
+- **Ciklus végi zárás:** a 2030-as választás előtt minden tétel végleges státuszt kap.
 
 ## Forráskezelés
 

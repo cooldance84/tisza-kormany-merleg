@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-24 – határidők minden tételnél, életciklus-szabály
+
+Státuszváltozás nincs.
+
+- **`Vállalt határidő` mind az 56 tételnél**, kizárólag a program PDF-jének szövege alapján: `első intézkedések` (20 tétel: 1, 3, 4, 5, 8, 11, 17, 19, 21, 24, 25, 47, 49–56), `2030-ra` (16, 18), `azonnal` (38), `2030-ig, évente` (39), a többi 32 tételnél `nincs megadva` – a program szakpolitikai fejezetei ezekhez nem adnak határidőt.
+- **18. Költségvetés állapota** – a programidézet a pontos programmondatra cserélődött („2030-ra teljesítjük a maastricht-i kritériumokat: 3% alatti költségvetési hiány…”), határideje `2030-ra`.
+- **README, módszertan** – új „Határidők és a tételek életciklusa” szakasz: ❌ csak a határidő után jár (`első intézkedések` és `azonnal`: a kormányzati év vége, 2027. május 12.; dátumos vállalás: a dátum után; `nincs megadva`: a ciklus vége, 2030); a ✅ tételek a listában maradnak; ciklus végi zárás 2030-ban. Ez felváltja az „első intézkedések” korábbi szabályát.
+- **24. Nemzeti megbékélés** – a december 31-i felülvizsgálat megmarad, ❌ azonban az új szabály szerint legkorábban 2027. május 12. után adható.
+- `scripts/validate.ps1`: a `Vállalt határidő` mező nem lehet üres.
+
 ## 2026-11-24 – 24. tétel: ❌ → ⏳, felülvizsgálat év végén
 
 - **24. Nemzeti megbékélés** – ❌ Nem teljesült → **⏳ Nyitott, 2026. december 31-i felülvizsgálattal**. A szöveg kiegészült a gesztusokkal (a miniszterelnök május 9-i bocsánatkérése és felhívása, a parlamenti bizottsági tisztségekről kötött megállapodás, az ÁBTL bocsánatkérése Lezsák Sándortól). A program „a nemzeti megbékélés programját” vállalta; ilyen program vagy intézmény még nem jött létre, a gesztusok miatt azonban a tétel az év végéig nyitott. Ha addig sem indul el érdemi program, ❌ lesz.

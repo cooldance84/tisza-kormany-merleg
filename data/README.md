@@ -24,7 +24,7 @@ A CSV-formátum szándékos: GitHubon jól diffelhető, kereshető és géppel f
 | `Státusz` | Az `Osszefoglalo.csv` egyik státusza, emojival együtt |
 | `Kapcsolódó TISZA-programvállalás` | Idézet vagy összefoglaló a programból |
 | `Forrás / ellenőrzés` | Soronként egy link, opcionális címkével: `Program: https://…`, `Program-összefoglaló: https://…` |
-| `Vállalt határidő` | A programidézetben szereplő határidő (pl. `azonnal`, `2030-ra`); `első intézkedések`, ha a vállalás a program „első intézkedések” listájában szerepel (10–11. o.); üres, ha a program nem nevez meg határidőt |
+| `Vállalt határidő` | Kötelező. A program szövegében szereplő határidő (pl. `azonnal`, `2030-ra`); `első intézkedések`, ha a vállalás a program „első intézkedések” listájában szerepel (10–11. o.); `nincs megadva`, ha a program nem nevez meg határidőt. A határidőkhöz tartozó szabályokat a fő [README](../README.md) „Határidők és a tételek életciklusa” szakasza írja le |
 | `Utolsó ellenőrzés` | `ÉÉÉÉ-HH-NN` – amikor a tétel státuszát utoljára vetették össze a forrásokkal |
 
 Egy cellában több forrás is lehet, ilyenkor soronként egy szerepel (idézőjeles, többsoros CSV-mező).

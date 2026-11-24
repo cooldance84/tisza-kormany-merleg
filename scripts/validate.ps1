@@ -102,7 +102,8 @@ $urlLine = '^([^:]+: )?https://\S+$'
 for ($i = 0; $i -lt $main.Rows.Count; $i++) {
     $r = $main.Rows[$i]; $id = $r[0]
     if ($id -ne [string]($i + 1)) { Fail "TISZA_merleg.csv: row $($i + 1) has ID '$id', expected $($i + 1) (IDs must be 1..N without gaps)" }
-    foreach ($j in 1..4) { if ($r[$j].Trim() -eq '') { Fail "TISZA_merleg.csv: ID $id column '$($main.Header[$j])' is empty" } }
+    # 1-4: area, problem, events, status; 7: deadline ("nincs megadva" when the programme gives none)
+    foreach ($j in 1, 2, 3, 4, 7) { if ($r[$j].Trim() -eq '') { Fail "TISZA_merleg.csv: ID $id column '$($main.Header[$j])' is empty" } }
     $lines = @($r[6] -split "`n" | Where-Object { $_.Trim() -ne '' })
     if ($lines.Count -eq 0) { Fail "TISZA_merleg.csv: ID $id has no source" }
     foreach ($l in $lines) { if ($l -notmatch $urlLine) { Fail "TISZA_merleg.csv: ID $id source line is not '[Label: ]https://...': $l" } }
