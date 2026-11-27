@@ -7,7 +7,7 @@ A könyvtár a TISZA-kormány mérleg aktuális, géppel is könnyen feldolgozha
 - **Forrasjegyzek.csv** – kiemelt források
 - **TISZA_kormany_merleg.xlsx** – ugyanez Excel-munkafüzetként (plusz *Projekt* munkalap)
 
-**Állapot:** első snapshot 2026-10-19, frissítések 2026-11-02 és 2026-11-24. Tételenként az `Utolsó ellenőrzés` oszlop mutatja, mikor vetették össze utoljára a forrásokkal; a változások a [`CHANGELOG.md`](../CHANGELOG.md)-ben vannak.
+**Állapot:** első snapshot 2026-10-19, frissítések 2026-11-02, 2026-11-24 és 2026-11-27. Tételenként az `Utolsó ellenőrzés` oszlop mutatja, mikor vetették össze utoljára a forrásokkal; a változások a [`CHANGELOG.md`](../CHANGELOG.md)-ben vannak.
 
 A sorokban szereplő státuszok az adott snapshot időpontjának állapotát mutatják. Egy későbbi bejelentés, jogszabály vagy végrehajtási adat a státuszt megváltoztathatja.
 

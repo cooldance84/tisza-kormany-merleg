@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-27 – napi ellenőrzés: vagyonosodási törvény kihirdetése, Hankó-ügy
+
+Státuszváltozás nincs.
+
+- **9. Vagyonnyilatkozatok** – a november 24-én újra megszavazott vagyonosodási törvényt 2026. évi LXXIV. törvényként november 25-én kihirdették (Magyar Közlöny 180. szám); november 26-án hatályba lépett, a nem nyilvános vagyonnyilatkozatok megismeréséről szóló 4. § december 1-jén. Új forrás: NJT és Magyar Közlöny. ↗️ marad: a NAV-vizsgálatok még nem indultak el, eredmény nincs.
+- **11. Elszámoltatás** – a Kecskeméti Törvényszék november 11-én másodfokon elutasította Hankó Balázs és Varga-Bajusz Veronika fellebbezését, letartóztatásuk februárig tart; vádemelés nincs. ⚠️ marad.
+
 ## 2026-11-24 – CONTRIBUTING.md frissítése
 
 Az „Adatmódosítás pull requestben” lépései igazodnak a jelenlegi szabályokhoz és ellenőrzésekhez: a darabszámokat a README státusztáblájában is frissíteni kell; a `Vállalt határidő` kötelező és csak programbeli határidő lehet; minden módosításhoz CHANGELOG-bejegyzés kell; a színezést és a rögzítést a `sync_xlsx.ps1` intézi; a validátor által ellenőrzött elemek felsorolva.
